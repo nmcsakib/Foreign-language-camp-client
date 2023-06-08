@@ -34,6 +34,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const updateUserProfile = (name, photo) => {
+        console.log(name, photo);
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
         });
@@ -46,7 +47,7 @@ const AuthProvider = ({ children }) => {
 
             // get and set token
             if(currentUser){
-                axios.post('https://bistro-boss-server-fawn.vercel.app/jwt', {email: currentUser.email})
+                axios.post('http://localhost:5000/jwt', {email: currentUser.email})
                 .then(data =>{
                     // console.log(data.data.token)
                     localStorage.setItem('access-token', data.data.token)

@@ -36,7 +36,7 @@ const Navbar = () => {
   <div className="navbar-end">
     {
       user ? <div className='transition-all flex space-x-4'>
-     <Link to="/login" className="btn btn-circle hover:bg-purple-500/30 text-slate-900 text-2xl rounded-lg p-3 text-md bg-purple-500 shadow inner-md  transform hover:translate-y-[-10px] p-3 text-md bg-purple-500 shadow inner-md"><FaChartBar/></Link>
+     <Link to="/dashboard" className="btn btn-circle hover:bg-purple-500/30 text-slate-900 text-2xl rounded-lg p-3 text-md bg-purple-500 shadow inner-md  transform hover:translate-y-[-10px] p-3 text-md bg-purple-500 shadow inner-md"><FaChartBar/></Link>
      <div><img className='btn btn-circle text-2xl transform hover:translate-y-[-10px] text-md shadow inner-md' src={user?.photoURL} title={`${user.displayName}`}/></div>
      <button onClick={handleLogOut} className="btn btn-circle text-slate-900 transform hover:bg-purple-500/30 hover:translate-y-[-10px] p-3 text-2xl bg-purple-500 shadow inner-md" title="Log out"><AiOutlineLogin/></button>
       

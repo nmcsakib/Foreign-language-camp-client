@@ -1,11 +1,28 @@
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AddClass = () => {
-  
-
+  const {user} = useAuth()
+  const [axiosSecure] = useAxiosSecure();
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = data => {
-    console.log(data);
+    const {email, name, thumbnail, seat, price} = data
+    const newClass = {instructor: name, instructorEmail: email, classImage: thumbnail, price, seat }
+    axiosSecure.post('/classes', newClass).then(data => {
+      console.log('after posting new menu item', data.data)
+      if(data.data.insertedId){
+          reset();
+          Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Item added successfully',
+              showConfirmButton: false,
+              timer: 1500
+            })
+      }
+  })
     reset()
   }
 
@@ -17,18 +34,18 @@ const AddClass = () => {
       <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Add A Class</h1>
       <p className="lg:w-2/3 mx-auto leading-relaxed text-slate-900">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.</p>
     </div>
-    <form  onSubmit={handleSubmit(onSubmit)} className="lg:w-1/2 md:w-2/3 mx-auto" >
+    <form  onSubmit={handleSubmit(onSubmit)} className="lg:w-5/6 md:w-2/3 mx-auto" >
       <div className="flex flex-wrap -m-2" >
         <div className="p-2 w-1/2" >
           <div className="relative" >
             
-            <input  {...register("name", {required: true})} placeholder="Your Name" type="text" id="name" name="name" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+            <input readOnly defaultValue={user?.displayName} {...register("name", {required: true})} placeholder="Your Name" type="text" id="name" name="name" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
           </div>
         </div>
         <div className="p-2 w-1/2" >
           <div className="relative" >
             
-            <input  {...register("email", {required: true})} placeholder="Your email" type="email" id="email" name="email" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+            <input readOnly defaultValue={user?.email}  {...register("email", {required: true})} placeholder="Your email" type="email" id="email" name="email" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
           </div>
         </div>
         <div className="p-2 w-1/2" >
@@ -40,19 +57,19 @@ const AddClass = () => {
         <div className="p-2 w-1/2" >
           <div className="relative" >
             
-            <input  {...register("title", {required: true})} placeholder="Class Title" type="email" id="email" name="email" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+            <input  {...register("title", {required: true})} placeholder="Class Title" type="email" id="email" name="email" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
           </div>
         </div>
         <div className="p-2 w-1/2" >
           <div className="relative" >
             
-            <input  {...register("seat", {required: true})} placeholder="Available seat" type="number" id="seat" name="seat" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+            <input  {...register("seat", {required: true})} placeholder="Available seat" type="number" id="seat" name="seat" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
           </div>
         </div>
         <div className="p-2 w-1/2" >
           <div className="relative" >
             
-            <input  {...register("price", {required: true})} placeholder="Price (USD)" type="number" id="price" name="price" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+            <input  {...register("price", {required: true})} placeholder="Price (USD)" type="number" id="price" name="price" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
           </div>
         </div>
         

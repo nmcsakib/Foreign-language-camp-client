@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-
+import axios from 'axios';
 const SocialLogin = () => {
     const navigate = useNavigate();
     const {googleSignIn} = useAuth()
@@ -8,6 +8,11 @@ const SocialLogin = () => {
         
         console.log('success');
         googleSignIn().then((res) => {
+            console.log(res.user);
+            const saveUser = {name: res?.user?.displayName, email: res?.user?.email, role: "student"} 
+            axios.post('http://localhost:5000/users', saveUser).then(res => {
+                console.log(res.data);
+            })
             navigate('/')
             console.log(res.user);
         }).catch(err => console.log(err))
