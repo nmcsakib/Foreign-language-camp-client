@@ -12,7 +12,7 @@ import img8 from '../../assets/home/bg8.jpg';
 
 const Banner = () => {
     return (
-        <Carousel className='pt-8' autoPlay={true} interval={1500} infiniteLoop={true} showThumbs={true} showIndicators={false} swipeable={true} emulateTouch={true}>
+        <Carousel className='pt-8' autoPlay={true} interval={1500} infiniteLoop={true} showThumbs={false} showIndicators={false} swipeable={true} emulateTouch={true}>
             <div className='flex justify-center items-center'>
                 <aside className=' w-1/2 p-16 flex justify-center items-center'>
                 <img className=' rounded-xl ' src={img1} />
@@ -74,7 +74,7 @@ const Banner = () => {
                 <img className=' rounded-xl ' src={img8} />
                 </aside>
                 <aside className='w-1/2 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500 font-bold text-xl px-5'>
-                    <h2>Our summer camp is open to students of all ages and backgrounds. Whether you're a complete beginner or an advanced speaker, we have a program that will meet your needs. We offer camps in a variety of languages, including Spanish, French, German, Chinese, and more.</h2>
+                    <h2>Our summer camp is open to students of all ages and backgrounds. Whether you`re a complete beginner or an advanced speaker, we have a program that will meet your needs. We offer camps in a variety of languages, including Spanish, French, German, Chinese, and more.</h2>
                 </aside>
             </div>
             

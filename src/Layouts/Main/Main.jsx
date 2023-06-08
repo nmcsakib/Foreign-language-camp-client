@@ -6,7 +6,7 @@ const Main = () => {
     return (
         <div className="main-container min-h-screen relative">
             <Navbar/>
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl min-h-screen mx-auto">
             <Outlet/>
             </div>
             <Footer/>

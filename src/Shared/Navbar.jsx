@@ -1,9 +1,18 @@
 
-import {FaChalkboardTeacher, FaUsers, FaHome, FaUser, FaChartBar} from 'react-icons/fa'
+import {FaChalkboardTeacher, FaUsers, FaHome, FaChartBar} from 'react-icons/fa'
+import { AiOutlineLogin } from "react-icons/ai";
+import { Link } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+  const handleLogOut = () => {
+    logOut()
+        .then(() => { })
+        .catch(error => console.log(error));
+}
     return (
         <div>
-            <div className="navbar w-3/4 lg-py-0 bg-purple-500/30 backdrop-blur-md rounded-lg fixed left-1/2 bottom-10 transform -translate-x-1/2 ">
+            <div className="navbar w-3/4 z-20 lg-py-0 bg-purple-500/30 backdrop-blur-md rounded-lg fixed left-1/2 bottom-10 transform -translate-x-1/2 ">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -13,20 +22,29 @@ const Navbar = () => {
     </div>
     <a className="btn btn-ghost normal-case text-xl">F L C</a>
   </div>
-  <div className="navbar-center hidden lg:flex">
+  <div className="navbar-center hidden lg:flex grow-1">
     <ul className="menu menu-horizontal space-x-5">
-      <li><span className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="HOME"><FaHome className='text-2xl'/></span></li>
+      <li><Link to="/" className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="HOME"><FaHome className='text-2xl'/></Link></li>
       
-      <li><span className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="Instructors"><FaChalkboardTeacher className='text-2xl'/></span></li>
+      <li><Link to="/add-class" className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="Instructors"><FaChalkboardTeacher className='text-2xl'/></Link></li>
+       <li><span className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="Classes"><FaUsers className='text-2xl '/></span></li>
       
-      <li><span className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="Classes"><FaUsers className='text-2xl'/></span></li>
-      <li><span className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="Dashboard"><FaChartBar className='text-2xl'/></span></li>
       
       
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn btn-circle "><FaUser/></a>
+    {
+      user ? <div className='transition-all flex space-x-4'>
+     <Link to="/login" className="btn btn-circle hover:bg-purple-500/30 text-slate-900 text-2xl rounded-lg p-3 text-md bg-purple-500 shadow inner-md  transform hover:translate-y-[-10px] p-3 text-md bg-purple-500 shadow inner-md"><FaChartBar/></Link>
+     <div><img className='btn btn-circle text-2xl transform hover:translate-y-[-10px] text-md shadow inner-md' src={user?.photoURL} title={`${user.displayName}`}/></div>
+     <button onClick={handleLogOut} className="btn btn-circle text-slate-900 transform hover:bg-purple-500/30 hover:translate-y-[-10px] p-3 text-2xl bg-purple-500 shadow inner-md" title="Log out"><AiOutlineLogin/></button>
+      
+      </div> :
+      <>
+      <Link to="/authentication" className="btn btn-circle text-slate-900 text-2xl transform hover:translate-y-[-10px] p-3 text-md bg-purple-500 shadow inner-md" title="Login"><AiOutlineLogin/></Link>
+      </>
+    }
   </div>
 </div>
         </div>
