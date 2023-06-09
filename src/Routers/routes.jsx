@@ -6,6 +6,7 @@ import Authentication from "../Pages/Authentication/Authentication";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import AllUsers from "../Pages/AllUsers/AllUsers";
 import AllClasses from "../Pages/AllClasses/AllClasses";
+import InstructorsClasses from "../Pages/InstructorsClasses/InstructorsClasses";
 
 export const router = createBrowserRouter([
    {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
         {
             path: '/dashboard/all-users',
             element: <AllUsers/>
+        },
+        {
+            path: '/dashboard/my-classes',
+            element: <InstructorsClasses/>
         },
         {
             path: '/dashboard/add-class',

@@ -1,6 +1,6 @@
 
-import {FaChalkboardTeacher, FaUsers, FaHome, FaChartBar} from 'react-icons/fa'
-import { AiOutlineLogin } from "react-icons/ai";
+import {FaChalkboardTeacher, FaUsers, FaHome, FaChartBar, FaSignOutAlt, FaSignInAlt} from 'react-icons/fa'
+
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 const Navbar = () => {
@@ -38,11 +38,11 @@ const Navbar = () => {
       user ? <div className='transition-all flex space-x-4'>
      <Link to="/dashboard" className="btn btn-circle hover:bg-purple-500/30 text-slate-900 text-2xl rounded-lg p-3 text-md bg-purple-500 shadow inner-md  transform hover:translate-y-[-10px] p-3 text-md bg-purple-500 shadow inner-md"><FaChartBar/></Link>
      <div><img className='btn btn-circle text-2xl transform hover:translate-y-[-10px] text-md shadow inner-md' src={user?.photoURL} title={`${user.displayName}`}/></div>
-     <button onClick={handleLogOut} className="btn btn-circle text-slate-900 transform hover:bg-purple-500/30 hover:translate-y-[-10px] p-3 text-2xl bg-purple-500 shadow inner-md" title="Log out"><AiOutlineLogin/></button>
+     <button onClick={handleLogOut} className="btn btn-circle text-slate-900 transform hover:bg-purple-500/30 hover:translate-y-[-10px] p-3 text-2xl bg-purple-500 shadow inner-md" title="Log out"><FaSignOutAlt/></button>
       
       </div> :
       <>
-      <Link to="/authentication" className="btn btn-circle text-slate-900 transform hover:bg-purple-500/30 hover:translate-y-[-10px] p-3 text-2xl bg-purple-500 shadow inner-md" title="Login"><AiOutlineLogin/></Link>
+      <Link to="/authentication" className="btn btn-circle text-slate-900 transform hover:bg-purple-500/30 hover:translate-y-[-10px] p-3 text-2xl bg-purple-500 shadow inner-md" title="Login"><FaSignInAlt/></Link>
       </>
     }
   </div>
