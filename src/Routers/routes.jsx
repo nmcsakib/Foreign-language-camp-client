@@ -9,6 +9,9 @@ import AllClasses from "../Pages/AllClasses/AllClasses";
 import InstructorsClasses from "../Pages/InstructorsClasses/InstructorsClasses";
 import AllInstructors from "../Pages/AllInstructors/AllInstructors";
 import ActiveClasses from "../Pages/ActiveClasses/ActiveClasses";
+import SelectedClasses from "../Pages/SelectedClasses/SelectedClasses";
+import Payment from "../Pages/Payment/Payment";
+import EnrolledClasses from "../Pages/EnrolledClasses/EnrolledClasses";
 
 export const router = createBrowserRouter([
    {
@@ -53,6 +56,18 @@ export const router = createBrowserRouter([
         {
             path: '/dashboard/all-classes',
             element: <AllClasses/>
+        },
+        {
+            path: '/dashboard/selected-classes',
+            element: <SelectedClasses/>
+        },
+        {
+            path: '/dashboard/enrolled-classes',
+            element: <EnrolledClasses/>
+        },
+        {
+            path: '/dashboard/payment',
+            element: <Payment/>
         },
     ]
    }

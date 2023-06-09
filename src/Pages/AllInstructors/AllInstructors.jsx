@@ -1,14 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const AllInstructors = () => {
+const AllInstructors = ({limit}) => {
+  
+  
     const [instructors, setInstructors] = useState([])
+    
     useEffect(() => {
-    axios.get('http://localhost:5000/instructors').then(data => {
+    axios.get(`http://localhost:5000/instructors/${limit || 'full'}`).then(data => {
         setInstructors(data.data)
         console.log(data);
     })
-    },[])
+    },[limit])
     return (
         <div className="grid grid-cols-3 gap-5 w-11/12 p-10 mx-auto items-center rounded-lg bg-purple-300/20 backdrop-blur-lg">
             {

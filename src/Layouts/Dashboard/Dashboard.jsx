@@ -32,9 +32,9 @@ const Dashboard = () => {
       <li><Link to="/dashboard/add-class"> <FaChalkboardTeacher />Add a class</Link></li>
         </> :
         <>
-         <li><Link to="/dashboard/all-users"><FaChalkboard/> My Selected Classes</Link></li>
-      <li><Link to="/dashboard/all-classes"> <FaChalkboardTeacher />My Enrolled Classes</Link></li>
-      <li><Link to="/dashboard/all-classes"> <FaCreditCard />Payment</Link></li>
+         <li><Link to="/dashboard/selected-classes"><FaChalkboard/> My Selected Classes</Link></li>
+      <li><Link to="/dashboard/enrolled-classes"> <FaChalkboardTeacher />My Enrolled Classes</Link></li>
+      <li><Link to="/dashboard/enrolled-classes"> <FaCreditCard />Payment History</Link></li>
         </>
       
     }
