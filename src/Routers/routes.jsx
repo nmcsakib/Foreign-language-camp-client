@@ -7,6 +7,8 @@ import Dashboard from "../Layouts/Dashboard/Dashboard";
 import AllUsers from "../Pages/AllUsers/AllUsers";
 import AllClasses from "../Pages/AllClasses/AllClasses";
 import InstructorsClasses from "../Pages/InstructorsClasses/InstructorsClasses";
+import AllInstructors from "../Pages/AllInstructors/AllInstructors";
+import ActiveClasses from "../Pages/ActiveClasses/ActiveClasses";
 
 export const router = createBrowserRouter([
    {
@@ -16,6 +18,14 @@ export const router = createBrowserRouter([
         {
             path: '/',
             element: <Home/>
+        },
+        {
+            path: '/all-instructors',
+            element: <AllInstructors/>
+        },
+        {
+            path: '/active-classes',
+            element: <ActiveClasses/>
         },
         
         {

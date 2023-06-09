@@ -9,11 +9,11 @@ import { useNavigate } from "react-router-dom";
 
 const Authentication = () => {
     const { signIn, createUser, updateUserProfile } = useAuth()
-    
+
     const [show, setShow] = useState(false)
     const [login, setLogin] = useState(true)
     const navigate = useNavigate()
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, formState: {errors} } = useForm();
     const onLoginSubmit = data => {
         const { email, password } = data;
         signIn(email, password)
@@ -40,7 +40,7 @@ const Authentication = () => {
                     console.log(res.user);
                     // toast('Register Successful')
                     updateUserProfile(displayName, photoURL).then((res) => {
-                        const saveUser = {name: displayName, email, role: "student"} 
+                        const saveUser = { name: displayName, photoURL, email, role: "student" }
                         axios.post('http://localhost:5000/users', saveUser).then(res => {
                             console.log(res.data);
                         })
@@ -61,12 +61,16 @@ const Authentication = () => {
     return (
         <section className="min-h-screen flex items-stretch text-white ">
             <div className="lg:flex w-1/2 hidden bg-no-repeat bg-cover relative items-center" >
+                
                 <div className="absolute bg-transparent inset-0 z-0"></div>
                 <div className="w-full px-4 z-10">
-                    <h1 className="text-5xl font-bold text-left tracking-wide">Keep it special</h1>
-                    <p className="text-3xl my-4">Capture your personal memory in unique way, anywhere.</p>
+        {errors.password && <div className="w-5/6 my-5 bg-red-500/30 border rounded-md h-20"><p className="text-white text-center mt-5">Password must have one Uppercase one lower case and one special character.</p> </div>}
+                    <h1 className="text-5xl font-bold text-left tracking-wide">Language Adventure Camp</h1>
+                    <p className="text-3xl my-4">Discover the World through Language: Join our Language Camp!</p>
                 </div>
-
+              
+        
+       
             </div>
             <div className="lg:w-1/2 w-full backdrop-blur-lg flex items-center justify-center text-center md:px-16 px-0 z-0" >
                 <div className="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center" >
@@ -128,7 +132,12 @@ const Authentication = () => {
                                     <input {...register("photoURL", { required: true })} type="url" placeholder="Photo URL" className="block w-full p-4 text-lg rounded-sm bg-black" />
                                 </div>
                                 <div className="relative pb-2 pt-4">
-                                    <input {...register("password", { required: true })} className="block w-full p-4 text-lg rounded-sm bg-black" type={`${!show ? "password" : "text"}`} placeholder="Password" />
+                                    <input {...register("password", { 
+                                        required: true,
+                                         minLength: 6, 
+                                          pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[a-z])/ 
+                                          
+                                          })} className="block w-full p-4 text-lg rounded-sm bg-black" type={`${!show ? "password" : "text"}`} placeholder="Password" />
                                     {
                                         !show ?
                                             <span onClick={() => setShow(true)} className="top-8 right-5 absolute text-xl"><FaEyeSlash /></span>
@@ -137,7 +146,7 @@ const Authentication = () => {
                                     }
                                 </div>
                                 <div className="pb-2 pt-4">
-                                    <input {...register("confirmPass", { required: true })} type={`${!show ? "password" : "text"}`}  placeholder="Confirm Password" className="block w-full p-4 text-lg rounded-sm bg-black" />
+                                    <input {...register("confirmPass", { required: true })} type={`${!show ? "password" : "text"}`} placeholder="Confirm Password" className="block w-full p-4 text-lg rounded-sm bg-black" />
                                 </div>
 
                                 <div className="py-2">
@@ -145,6 +154,9 @@ const Authentication = () => {
                                 </div>
                                 <div className="text-right text-gray-400 hover:underline hover:text-gray-100">
                                     <button onClick={handelFormStructure}>Already have an account?</button>
+                                    
+                                     
+                                    
                                 </div>
 
                             </form>

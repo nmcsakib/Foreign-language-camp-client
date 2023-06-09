@@ -26,8 +26,8 @@ const Navbar = () => {
     <ul className="menu menu-horizontal space-x-5">
       <li><Link to="/" className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="HOME"><FaHome className='text-2xl'/></Link></li>
       
-      <li><Link to="/add-class" className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="Instructors"><FaChalkboardTeacher className='text-2xl'/></Link></li>
-       <li><span className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="Classes"><FaUsers className='text-2xl '/></span></li>
+      <li><Link to="/all-instructors" className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="Instructors"><FaChalkboardTeacher className='text-2xl'/></Link></li>
+       <li><Link to="/active-classes" className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="Classes"><FaUsers className='text-2xl '/></Link></li>
       
       
       
@@ -36,7 +36,7 @@ const Navbar = () => {
   <div className="navbar-end">
     {
       user ? <div className='transition-all flex space-x-4'>
-     <Link to="/dashboard" className="btn btn-circle hover:bg-purple-500/30 text-slate-900 text-2xl rounded-lg p-3 text-md bg-purple-500 shadow inner-md  transform hover:translate-y-[-10px] p-3 text-md bg-purple-500 shadow inner-md"><FaChartBar/></Link>
+     <Link to="/dashboard" className="btn btn-circle hover:bg-purple-500/30 text-slate-900 text-2xl rounded-lg p-3 text-md shadow inner-md  transform hover:translate-y-[-10px] text-md bg-purple-500 shadow inner-md"><FaChartBar/></Link>
      <div><img className='btn btn-circle text-2xl transform hover:translate-y-[-10px] text-md shadow inner-md' src={user?.photoURL} title={`${user.displayName}`}/></div>
      <button onClick={handleLogOut} className="btn btn-circle text-slate-900 transform hover:bg-purple-500/30 hover:translate-y-[-10px] p-3 text-2xl bg-purple-500 shadow inner-md" title="Log out"><FaSignOutAlt/></button>
       

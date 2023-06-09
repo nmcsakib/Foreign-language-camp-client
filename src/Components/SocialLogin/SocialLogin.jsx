@@ -9,7 +9,7 @@ const SocialLogin = () => {
         console.log('success');
         googleSignIn().then((res) => {
             console.log(res.user);
-            const saveUser = {name: res?.user?.displayName, email: res?.user?.email, role: "student"} 
+            const saveUser = {name: res?.user?.displayName, photoURL: res?.user?.photoURL, email: res?.user?.email, role: "student"} 
             axios.post('http://localhost:5000/users', saveUser).then(res => {
                 console.log(res.data);
             })
