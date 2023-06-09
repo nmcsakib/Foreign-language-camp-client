@@ -42,7 +42,7 @@ const Navbar = () => {
       
       </div> :
       <>
-      <Link to="/authentication" className="btn btn-circle text-slate-900 text-2xl transform hover:translate-y-[-10px] p-3 text-md bg-purple-500 shadow inner-md" title="Login"><AiOutlineLogin/></Link>
+      <Link to="/authentication" className="btn btn-circle text-slate-900 transform hover:bg-purple-500/30 hover:translate-y-[-10px] p-3 text-2xl bg-purple-500 shadow inner-md" title="Login"><AiOutlineLogin/></Link>
       </>
     }
   </div>

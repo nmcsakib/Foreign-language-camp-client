@@ -6,8 +6,10 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
+
 const Authentication = () => {
     const { signIn, createUser, updateUserProfile } = useAuth()
+    
     const [show, setShow] = useState(false)
     const [login, setLogin] = useState(true)
     const navigate = useNavigate()
@@ -135,7 +137,7 @@ const Authentication = () => {
                                     }
                                 </div>
                                 <div className="pb-2 pt-4">
-                                    <input {...register("confirmPass", { required: true })} type="password" placeholder="Confirm Password" className="block w-full p-4 text-lg rounded-sm bg-black" />
+                                    <input {...register("confirmPass", { required: true })} type={`${!show ? "password" : "text"}`}  placeholder="Confirm Password" className="block w-full p-4 text-lg rounded-sm bg-black" />
                                 </div>
 
                                 <div className="py-2">
