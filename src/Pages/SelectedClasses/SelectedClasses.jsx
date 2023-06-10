@@ -1,26 +1,40 @@
-import { useEffect, useState } from "react";
+
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaInbox, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const SelectedClasses = () => {
     const { user } = useAuth();
-    const [selected, setSelected] = useState([]);
+    
     const [axiosSecure] = useAxiosSecure();
     
-    useEffect(() => {
-      axiosSecure.get(`/selected-classes/${user?.email}`).then((data) => {
-        setSelected(data.data);
-        console.log(data.data);
-      });
-    }, [axiosSecure, user?.email]);
-
-    const handelDelete = (id) => {
-        axiosSecure.delete(`/selected-classes/${id}`).then(res => {
+ 
+        const {data: selected = [], isLoading, refetch} = useQuery(['selectedClass'], async()=>{
+            const res = await axiosSecure.get(`/selected-classes/${user?.email}`)
+            console.log(res.data);
             
+            return res.data;
+        }
+        
+        )
+    
+
+   
+    const handelDelete = (id) => {
+        console.log(id)
+        axiosSecure.delete(`/selected-classes/${id}`).then(res => {
+
+            console.log(res.data);
+            refetch()
         })
-    }
+         
+        
+     }
+    
+     
+    
     return (
         <div className="w-full p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
             <div className="overflow-x-auto w-full">
@@ -37,9 +51,12 @@ const SelectedClasses = () => {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-               {
-                selected?.map((cls, index) => <tr key={cls.class._id}>
+                    {
+                        isLoading ? <p>Loading....</p> :
+                        <>
+                         <tbody>
+               { 
+                selected?.map((cls, index) => <tr key={cls._id}>
                     <td>{index + 1}</td>
                     <td> <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
@@ -60,12 +77,15 @@ const SelectedClasses = () => {
             
             <td className="btn-group">
             <Link to="/dashboard/payment" state={{selectedClass: cls}} className="btn btn-sm" title="Pay"><FaInbox/></Link>
-            <button onClick={() => handelDelete(cls?.class._id)} className="btn btn-sm" title="Delete"><FaTrashAlt/></button>
+            <button onClick={() => handelDelete(cls?._id)} className="btn btn-sm" title="Delete"><FaTrashAlt/></button>
             
             </td>
                 </tr>)
                }
                     </tbody>
+                        </>
+                    }
+                   
                 </table>
             </div>
         </div>

@@ -1,5 +1,5 @@
-import SectionTitle from "../../Components/SectionTitle/SectionTitle";
-import mocupImg from '../../assets/home/mockup.jpg'
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import mocupImg from '../../../assets/home/mockup.jpg'
 const DownloadApp = () => {
     return (
         <>
