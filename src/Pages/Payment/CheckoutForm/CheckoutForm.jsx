@@ -80,6 +80,10 @@ const CheckoutForm = ({ selectedClass }) => {
         setProcessing(false)
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id);
+            console.log('checkout', selectedClass?.class._id);
+            axiosSecure.patch(`/classes/${selectedClass?.class?._id}`).then(res => {
+                console.log(res.data);
+            }).catch(err => console.log(err))
             // save payment information to the server
             const payment = {
                 email: user?.email,
@@ -97,6 +101,7 @@ const CheckoutForm = ({ selectedClass }) => {
                 .then(res => {
                     console.log(res.data);
                     if (res.data.deleteResult.deletedCount > 0) {
+                       
                         Swal.fire(
                            { title: 'success',
                             showCloseButton: true

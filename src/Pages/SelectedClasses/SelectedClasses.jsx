@@ -12,9 +12,10 @@ const SelectedClasses = () => {
     
  
         const {data: selected = [], isLoading, refetch} = useQuery(['selectedClass'], async()=>{
-            const res = await axiosSecure.get(`/selected-classes/${user?.email}`)
+            const res = await axiosSecure.get(`/selected-classes/${user?.email}`).catch(err => console.log(err))
             console.log(res.data);
             
+            console.log('isLoading 18', isLoading);
             return res.data;
         }
         
@@ -25,10 +26,10 @@ const SelectedClasses = () => {
     const handelDelete = (id) => {
         console.log(id)
         axiosSecure.delete(`/selected-classes/${id}`).then(res => {
-
             console.log(res.data);
+            console.log('isLoading', isLoading);
             refetch()
-        })
+        }).catch(err => console.log(err))
          
         
      }
@@ -38,7 +39,11 @@ const SelectedClasses = () => {
     return (
         <div className="w-full p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
             <div className="overflow-x-auto w-full">
-                <table className="table">
+               
+                    {
+                        isLoading ? <p className="text-center">Loading....</p> :
+                        
+                        <table className="table">
                     <thead>
                   
                         <tr>
@@ -51,9 +56,6 @@ const SelectedClasses = () => {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    {
-                        isLoading ? <p>Loading....</p> :
-                        <>
                          <tbody>
                { 
                 selected?.map((cls, index) => <tr key={cls._id}>
@@ -83,10 +85,11 @@ const SelectedClasses = () => {
                 </tr>)
                }
                     </tbody>
-                        </>
+                        </table>
+                        
                     }
                    
-                </table>
+                
             </div>
         </div>
     );
