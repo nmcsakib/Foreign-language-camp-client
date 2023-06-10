@@ -36,6 +36,8 @@ const AllClasses = () => {
     return (
         <div className="w-full p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
             <div className="overflow-x-auto w-full">
+            {  classes.length < 1 ?
+                                    <h2 className="text-3xl text-center">No Classes Available ! </h2> :
                 <table className="table">
                     <thead>
                   
@@ -82,6 +84,7 @@ const AllClasses = () => {
                }
                     </tbody>
                 </table>
+}
             </div>
         </div>
     );

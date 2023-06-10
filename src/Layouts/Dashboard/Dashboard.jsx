@@ -1,5 +1,5 @@
 import { FaChalkboard, FaChalkboardTeacher, FaCreditCard, FaHome, FaUsers } from "react-icons/fa";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
@@ -17,24 +17,24 @@ const Dashboard = () => {
   </div> 
   <div className="drawer-side">
     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-    <ul className="menu p-4 w-60 text-lg h-full bg-base-200 text-base-content">
+    <ul className="menu p-4 w-60 text-[1.1rem] h-full bg-base-200 text-base-content">
       {/* Sidebar content here */}
       
-    <li><Link to="/"><FaHome/>HOME</Link></li>
+    <li><NavLink className={({ isActive }) => isActive ? "text-[1.2rem] text-purple-500 transition-all z-10 focus:bg-transparent" : ""} to="/"><FaHome/>HOME</NavLink></li>
     <hr />
      { role === 'admin' ?
         <>
-        <li><Link to="/dashboard/all-users"><FaUsers/> Manage Users</Link></li>
-        <li><Link to="/dashboard/all-classes"> <FaChalkboardTeacher />Manage Classes</Link></li>
+        <li><NavLink className={({ isActive }) => isActive ? "text-[1.2rem] text-purple-500 transition-all z-10 focus:bg-transparent" : ""} to="/dashboard/all-users"><FaUsers/> Manage Users</NavLink></li>
+        <li><NavLink className={({ isActive }) => isActive ? "text-[1.2rem] text-purple-500 transition-all z-10 focus:bg-transparent" : ""} to="/dashboard/all-classes"> <FaChalkboardTeacher />Manage Classes</NavLink></li>
         </> : role === 'instructor' ?
         <>
-         <li><Link to="/dashboard/my-classes"><FaChalkboard/> My Classes</Link></li>
-      <li><Link to="/dashboard/add-class"> <FaChalkboardTeacher />Add a class</Link></li>
+         <li><NavLink className={({ isActive }) => isActive ? "text-[1.2rem] text-purple-500 transition-all z-10 focus:bg-transparent" : ""} to="/dashboard/my-classes"><FaChalkboard/> My Classes</NavLink></li>
+      <li><NavLink className={({ isActive }) => isActive ? "text-[1.2rem] text-purple-500 transition-all z-10 focus:bg-transparent" : ""} to="/dashboard/add-class"> <FaChalkboardTeacher />Add a class</NavLink></li>
         </> :
         <>
-         <li><Link to="/dashboard/selected-classes"><FaChalkboard/> My Selected Classes</Link></li>
-      <li><Link to="/dashboard/enrolled-classes"> <FaChalkboardTeacher />My Enrolled Classes</Link></li>
-      <li><Link to="/dashboard/enrolled-classes"> <FaCreditCard />Payment History</Link></li>
+         <li><NavLink className={({ isActive }) => isActive ? "text-[1.2rem] text-purple-500 transition-all z-10 focus:bg-transparent" : ""} to="/dashboard/selected-classes"><FaChalkboard/> My Selected Classes</NavLink></li>
+      <li><NavLink className={({ isActive }) => isActive ? "text-[1.2rem] text-purple-500 transition-all z-10 focus:bg-transparent" : ""} to="/dashboard/enrolled-classes"> <FaChalkboardTeacher />My Enrolled Classes</NavLink></li>
+      <li><NavLink className={({ isActive }) => isActive ? "text-[1.2rem] text-purple-500 transition-all z-10 focus:bg-transparent" : ""} to="/dashboard/my-payments"> <FaCreditCard />Payment History</NavLink></li>
         </>
       
     }

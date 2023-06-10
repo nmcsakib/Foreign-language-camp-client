@@ -1,7 +1,7 @@
 
 import {FaChalkboardTeacher, FaUsers, FaHome, FaChartBar, FaSignOutAlt, FaSignInAlt} from 'react-icons/fa'
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -24,10 +24,10 @@ const Navbar = () => {
   </div>
   <div className="navbar-center hidden lg:flex grow-1">
     <ul className="menu menu-horizontal space-x-5">
-      <li><Link to="/" className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="HOME"><FaHome className='text-2xl'/></Link></li>
+      <li><NavLink to="/" className={({ isActive }) => isActive ?  "transform translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md " : "text-slate-900 rounded-lg p-3 text-md bg-purple-500 shadow inner-md"}  title="HOME"><FaHome className='text-2xl'/></NavLink></li>
       
-      <li><Link to="/all-instructors" className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="Instructors"><FaChalkboardTeacher className='text-2xl'/></Link></li>
-       <li><Link to="/active-classes" className='text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md' title="Classes"><FaUsers className='text-2xl '/></Link></li>
+      <li><NavLink to="/active-classes" className={({ isActive }) => isActive ?  "transform translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md " : "text-slate-900 rounded-lg p-3 text-md bg-purple-500 shadow inner-md"}title="Instructors"><FaChalkboardTeacher className='text-2xl'/></NavLink></li>
+       <li><NavLink to="/all-instructors" className={({ isActive }) => isActive ?  "transform translate-y-[-10px] rounded-lg p-3 text-md bg-purple-500 shadow inner-md " : "text-slate-900 rounded-lg p-3 text-md bg-purple-500 shadow inner-md"}title="Classes"><FaUsers className='text-2xl '/></NavLink></li>
       
       
       
@@ -36,13 +36,14 @@ const Navbar = () => {
   <div className="navbar-end">
     {
       user ? <div className='transition-all flex space-x-4'>
-     <Link to="/dashboard" className="btn btn-circle hover:bg-purple-500/30 text-slate-900 text-2xl rounded-lg p-3 text-md shadow inner-md  transform hover:translate-y-[-10px] text-md bg-purple-500 shadow inner-md"><FaChartBar/></Link>
+     <NavLink to="/dashboard" className={`${({isActive}) => isActive ? "transform translate-y-[-10px]" : ""} btn btn-circle hover:bg-purple-500/30 text-slate-900 text-2xl rounded-lg p-3 text-md  inner-md text-md bg-purple-500 shadow inner-md`} ><FaChartBar/></NavLink>
      <div><img className='btn btn-circle text-2xl transform hover:translate-y-[-10px] text-md shadow inner-md' src={user?.photoURL} title={`${user.displayName}`}/></div>
      <button onClick={handleLogOut} className="btn btn-circle text-slate-900 transform hover:bg-purple-500/30 hover:translate-y-[-10px] p-3 text-2xl bg-purple-500 shadow inner-md" title="Log out"><FaSignOutAlt/></button>
       
       </div> :
       <>
-      <Link to="/authentication" className="btn btn-circle text-slate-900 transform hover:bg-purple-500/30 hover:translate-y-[-10px] p-3 text-2xl bg-purple-500 shadow inner-md" title="Login"><FaSignInAlt/></Link>
+      <NavLink to="/authentication" className={({ isActive }) => isActive ?  "transform translate-y-[-10px] bg-purple-500/30 btn btn-circle text-slate-900  p-3 text-2xl bg-purple-500 shadow inner-md" : "btn btn-circle text-slate-900  p-3 text-2xl bg-purple-500 shadow inner-md"}
+      title="Login"><FaSignInAlt/></NavLink>
       </>
     }
   </div>
