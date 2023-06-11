@@ -53,10 +53,10 @@ const PaymentHistory = () => {
                 <td>{index + 1}</td>
                 <td> <div className="avatar">
           <div className="mask mask-squircle w-12 h-12">
-            <img src={payment.classImage} alt="Avatar Tailwind CSS Component" />
+            <img src={payment.image} alt="Avatar Tailwind CSS Component" />
           </div>
         </div></td>
-        <td>{payment.classTitle}</td>
+        <td>{payment.title}</td>
         {/*  */}
       
         <td className="text-center">{payment.price}</td>

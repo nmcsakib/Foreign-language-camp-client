@@ -1,6 +1,7 @@
 import { FaUserEdit, FaUserShield } from "react-icons/fa";
 import useUsers from "../../hooks/useUsers";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
 const AllUsers = () => {
   
@@ -17,7 +18,9 @@ const AllUsers = () => {
       console.log(role);
     }
     return (
-        <div className="w-5/6 p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
+      <>
+        <div className="w-11/12 mx-auto p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
+      <SectionTitle title="All Users"/>
             <div className="overflow-x-auto w-full">
   <table className="table">
     {/* head */}
@@ -44,8 +47,8 @@ const AllUsers = () => {
             user.role !== 'admin' && 
             
             <td className="btn-group">
-            <button onClick={() => handelActions([user, 'admin'])} className="btn btn-sm" title="Admin"><FaUserShield/></button>
-            <button onClick={() => handelActions([user, 'instructor'])} className="btn btn-sm" title="Instructor"><FaUserEdit/></button>
+            <button onClick={() => handelActions([user, 'admin'])} className={user.role === 'admin' ? 'btn btn-sm btn-disabled bg-opacity-60' : "btn btn-sm tooltip"} data-tip="Admin"><FaUserShield/></button>
+            <button onClick={() => handelActions([user, 'instructor'])} className={user.role === 'instructor' ? 'btn btn-sm btn-disabled bg-opacity-60' : "btn btn-sm tooltip"} data-tip="Instructor"><FaUserEdit/></button>
         </td>
             
         }
@@ -56,6 +59,7 @@ const AllUsers = () => {
      </table>
      </div>
      </div>
+     </>
     );
 };
 

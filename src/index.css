@@ -3,13 +3,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.main-container{
+body{
     font-family: 'DM Sans';
     font-weight: 700;
-/* font-family: 'Mr Dafoe', cursive; */
-    background-size: contain;
-    background-position: 200% 100%;
+    
+}
+.bgDark{
     background-image: url('../src/assets/bg.jpg');
+}
+.bgLight{
+    color: #110f29;
+    background-image: url('../src/assets/bgLight.jpg');
 }
 .navbarItem{
     @apply text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 bg-purple-500 shadow 

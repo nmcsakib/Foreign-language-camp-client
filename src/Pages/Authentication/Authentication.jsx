@@ -4,11 +4,14 @@ import axios from 'axios';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import useScrollTop from "../../hooks/useScrollTop";
 
 
 const Authentication = () => {
+    const {pathname} = useLocation()
+    useScrollTop(pathname)
     const { signIn, createUser, updateUserProfile } = useAuth()
 
     const [show, setShow] = useState(false)
@@ -52,9 +55,9 @@ const Authentication = () => {
                         toast.err(err?.message || 'Sign up unsuccessful')
                     })
                 })
-                .catch(err => console.log(err?.message))
+                .catch(err => toast(err?.message))
         } else {
-            alert('SignUpPassword didn`t match')
+           toast('SignUpPassword didn`t match')
         }
         reset()
     }
@@ -78,7 +81,7 @@ const Authentication = () => {
 
             </div>
             <div className="lg:w-1/2 w-full backdrop-blur-lg flex items-center justify-center text-center md:px-16 px-0 z-0" >
-                <div className="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center" >
+                <div className="absolute lg:hidden z-10 inset-0 bg-transparend backdrop-blur-xl bg-no-repeat bg-cover items-center" >
                     <div className="absolute bg-white/10 text-white  border-white opacity-60 inset-0 z-0"></div>
                 </div>
                 {
@@ -93,7 +96,7 @@ const Authentication = () => {
                             <p className="text-gray-100">
                                 or use email your account
                             </p>
-                            <form onSubmit={handleSubmit(onLoginSubmit)} className="sm:w-2/3  w-full px-4 lg:px-0 mx-auto">
+                            <form onSubmit={handleSubmit(onLoginSubmit)} className="sm:w-2/3 select-none  w-full px-4 lg:px-0 mx-auto">
                                 <div className="pb-2 pt-4">
                                     <input {...register("email", { required: true })} type="email" placeholder="Email" className="block w-full p-4  text-lg rounded-sm bg-white/10 text-white  border-white" />
                                 </div>
@@ -101,9 +104,9 @@ const Authentication = () => {
                                     <input {...register("password", { required: true })} className="block w-full p-4 text-lg rounded-sm bg-white/10 text-white  border-white" type={`${!show ? "password" : "text"}`} placeholder="Password" />
                                     {
                                         !show ?
-                                            <span onClick={() => setShow(true)} className="top-8 right-5 absolute text-xl"><FaEyeSlash /></span>
+                                            <span onClick={() => setShow(true)} className="absolute inset-0 my-auto w-5 h-5 ml-auto  flex items-center justify-end mr-4 text-xl"><FaEyeSlash /></span>
                                             :
-                                            <span onClick={() => setShow(false)} className="top-8 right-5 absolute text-xl"><FaEye /></span>
+                                            <span onClick={() => setShow(false)} className="absolute inset-0 my-auto w-5 h-5 ml-auto  flex items-center justify-end mr-4 text-xl"><FaEye /></span>
                                     }
                                 </div>
 
@@ -157,7 +160,7 @@ const Authentication = () => {
                                 <div className="py-2">
                                     <input type="submit" className="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none" value="sign Up" />
                                 </div>
-                                <div className="text-right text-gray-400 hover:underline hover:text-gray-100">
+                                <div className="text-right  text-gray-400 hover:underline hover:text-gray-100 ">
 
                                     <button onClick={handelFormStructure}>Already have an account?</button>
 

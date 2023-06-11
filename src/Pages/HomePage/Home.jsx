@@ -1,5 +1,5 @@
 import DownloadApp from "./DownloadApp/DownloadApp";
-import PopularClasses from "../PopularClasses/PopularClasses";
+import PopularClasses from "./PopularClasses/PopularClasses";
 import Banner from "./Banner";
 import PopularInstructors from "./PopularInstructors";
 

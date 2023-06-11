@@ -48,21 +48,21 @@ const InstructorsClasses = () => {
                     <td>{index + 1}</td>
                     <td> <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
-                <img src={cls.classImage} alt="Avatar Tailwind CSS Component" />
+                <img src={cls.image} alt="Avatar Tailwind CSS Component" />
               </div>
             </div></td>
-            <td>{cls.classTitle}</td>
+            <td>{cls.title}</td>
             <td className={`${cls.status === 'pending' ? 'text-yellow-600' : cls.status === 'approved' ? 'text-green-500': 'text-red-600'}`}>{cls.status}</td>
             <td className="text-center">{cls.totalStudents || 0}</td>
             
             {
                 cls.status !== 'denied' ? 
                 <td className="btn-group">
-            <button className="btn btn-sm" title="Update"><FaPenSquare/></button>
+            <button className="btn btn-sm tooltip tooltip-left" data-tip="Update"><FaPenSquare/></button>
             
             </td> :
             <td className="btn-group">
-            <button onClick={() => handelFeedback(cls?.feedback)} className="btn btn-sm" title="Feedback"><FaEnvelopeOpen/></button>
+            <button onClick={() => handelFeedback(cls?.feedback)} className="btn btn-sm tooltip tooltip-left" data-tip="Feedback"><FaEnvelopeOpen/></button>
             
             </td>
             }

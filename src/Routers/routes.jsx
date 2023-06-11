@@ -13,6 +13,7 @@ import SelectedClasses from "../Pages/SelectedClasses/SelectedClasses";
 import Payment from "../Pages/Payment/Payment";
 import EnrolledClasses from "../Pages/EnrolledClasses/EnrolledClasses";
 import PaymentHistory from "../Pages/Payment/PaymentHistory/PaymentHistory";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
    {
@@ -36,7 +37,8 @@ export const router = createBrowserRouter([
             path: '/authentication',
             element: <Authentication/>
         },
-    ]
+    ],
+    errorElement: <ErrorPage/>
    },
    {
     path: '/dashboard',
@@ -75,6 +77,7 @@ export const router = createBrowserRouter([
             element: <PaymentHistory/>
         },
     ]
-   }
+   },
+   
 
 ])

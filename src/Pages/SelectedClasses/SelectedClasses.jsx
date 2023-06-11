@@ -80,10 +80,10 @@ const SelectedClasses = () => {
                                                     <td>{index + 1}</td>
                                                     <td> <div className="avatar">
                                                         <div className="mask mask-squircle w-12 h-12">
-                                                            <img src={cls?.classImage} alt="Avatar Tailwind CSS Component" />
+                                                            <img src={cls?.image} alt="Avatar Tailwind CSS Component" />
                                                         </div>
                                                     </div></td>
-                                                    <td>{cls?.classTitle}</td>
+                                                    <td>{cls?.title}</td>
                                                     {/*  */}
                                                     <td className="text-center space-y-3">
                                                         <span className="text-lg">{cls?.instructor}</span>
@@ -96,8 +96,8 @@ const SelectedClasses = () => {
 
 
                                                     <td className="btn-group">
-                                                        <Link to="/dashboard/payment" state={{ selectedClass: cls }} className="btn btn-sm" title="Pay"><FaInbox /></Link>
-                                                        <button onClick={() => handelDelete(cls?._id)} className="btn btn-sm" title="Delete"><FaTrashAlt /></button>
+                                                        <Link to="/dashboard/payment" state={{ selectedClass: cls }} className="btn btn-sm tooltip tooltip-left" data-tip="Pay"><FaInbox /></Link>
+                                                        <button onClick={() => handelDelete(cls?._id)} className="btn btn-sm tooltip tooltip-left" data-tip="Delete"><FaTrashAlt /></button>
 
                                                     </td>
                                                 </tr>)

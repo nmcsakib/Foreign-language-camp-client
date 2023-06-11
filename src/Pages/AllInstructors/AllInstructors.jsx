@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
 const AllInstructors = ({limit}) => {
   
@@ -13,12 +14,14 @@ const AllInstructors = ({limit}) => {
     })
     },[limit])
     return (
-        <div className="grid grid-cols-3 gap-5 w-11/12 p-10 mx-auto items-center rounded-lg bg-purple-300/20 backdrop-blur-lg">
+      <>
+      <SectionTitle title={ limit === 'six' ? "Our popular Instructors" : " Our All Instructors" }/>
+        <div className="grid md:grid-cols-3 gap-5 w-11/12 p-10 mx-auto items-center rounded-lg bg-purple-300/20 backdrop-blur-lg">
             {
                 instructors?.map(instructor => 
                 <div key={instructor._id} className="card  bg-green-400/30 border shadow-xl">
   <figure className="p-8">
-    <img className="w-full h-32 rounded-md" src={instructor?.photoURL} />
+    <img className="w-96 md:w-full h-32 rounded-md" src={instructor?.photoURL} />
   </figure>
   <div className="card-body items-center text-center">
   <h2>Name: <span className="text-lg uppercase">{instructor.name}</span></h2>
@@ -33,6 +36,7 @@ const AllInstructors = ({limit}) => {
                 )
             }
         </div>
+        </>
     );
 };
 

@@ -29,7 +29,7 @@ const navigate = useNavigate()
               const imgURL = imgResponse.data.display_url || 'https://picsum.photos/200/300';
               console.log(imgURL);
           const { email, name, title, seat, price } = data
-          const newClass = { instructor: name, instructorEmail: email, classImage: imgURL, classTitle: title, price: parseFloat(price), seat: parseFloat(seat), status: 'pending' }
+          const newClass = { instructor: name, instructorEmail: email, image: imgURL, title: title, price: parseFloat(price), seat: parseFloat(seat), status: 'pending' }
           console.log(newClass);
           axiosSecure.post('/classes', newClass).then(data => {
             console.log('after posting new menu item', data.data)

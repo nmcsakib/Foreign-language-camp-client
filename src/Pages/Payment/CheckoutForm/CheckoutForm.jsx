@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ selectedClass }) => {
     console.log(selectedClass?.price);
-    console.log('from checkout from',selectedClass?.classTitle,);
+    console.log('from checkout from',selectedClass?.title,);
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useAuth();
@@ -88,11 +88,11 @@ const CheckoutForm = ({ selectedClass }) => {
             // save payment information to the server
             const payment = {
                 email: user?.email,
-                date: new Date(),
+               
                 transactionId: paymentIntent.id,
-                classTitle: selectedClass?.classTitle,
+                title: selectedClass?.title,
                 classId: selectedClass?._id,
-                classImage: selectedClass?.classImage,
+                image: selectedClass?.image,
                 instructor: selectedClass?.instructor,
                 instructorEmail: selectedClass?.instructorEmail,
                 price: selectedClass?.price,
