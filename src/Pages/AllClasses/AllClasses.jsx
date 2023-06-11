@@ -2,37 +2,62 @@ import { useQuery } from "@tanstack/react-query";
 
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaCheck, FaTimes } from "react-icons/fa";
+import { toast } from "react-hot-toast";
+import { useRef, useState } from "react";
 
 
 const AllClasses = () => {
     
     const [axiosSecure] = useAxiosSecure()
+    const feedback = useRef(null);
 
     const { data: classes = [], refetch, isLoading } = useQuery(['classes'], async () => {
         const res = await axiosSecure.get(`/classes`)
         console.log(res.data);
         return res.data;
     })
+    const [feedbackValue, setFeedbackValue] = useState('')
+   
+
     const handelStatus =  (cls, status) => {
         if(status === 'denied'){
-            const feedback = prompt('Why You denied the class?')
-            if(feedback){
-                axiosSecure.patch(`/classes/${cls._id}`, {status, feedback: feedback}).then(data => {
+            toast((t) => (
+                <span>
+                 
+  <label className="label">
+    <span className="label-text">Give Your Feedback.</span>
+  </label>
+  <input type="text" ref={feedback} placeholder="Type here" className="input input-primary input-bordered w-5/6 max-w-xs" />
+          <button className={feedbackValue ? 'btn btn-primary btn-sm' : 'btn btn-sm disabled'} onClick={() => {handelFeedback(t)}}>
+                    Ok
+                  </button>
+                </span>
+              ));
+            
+            if(feedbackValue){
+                axiosSecure.patch(`/classes/${cls._id}`, {status, feedback: feedbackValue}).then(data => {
                     console.log(data);
                     refetch()
                   }).catch(err => console.log(err))
                   console.log(status);
+                  
             }
         } else{
             axiosSecure.patch(`/classes/${cls._id}`, {status}).then(data => {
                 console.log(data);
+                toast.success('class added successfully')
                 refetch()
               }).catch(err => console.log(err))
               console.log(status);
         }
        
     }
-
+ function handelFeedback(t) {
+        const inputValue = feedback.current.value;
+        console.log(inputValue);
+        setFeedbackValue(inputValue)
+        toast.dismiss(t.id)
+      }
     return (
         <div className="w-full p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
             <div className="overflow-x-auto w-full">

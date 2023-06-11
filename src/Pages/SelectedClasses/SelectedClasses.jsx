@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaInbox, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
 
 const SelectedClasses = () => {
     const { user } = useAuth();
@@ -25,7 +26,15 @@ const SelectedClasses = () => {
 
     const handelDelete = (id) => {
         console.log(id)
-        axiosSecure.delete(`/selected-classes/${id}`).then(res => {
+        axiosSecure.delete(`/selected-classes/${id}`, {
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json',
+              // Other headers if needed
+            } } ).then(res => {
+                if(res.data.deletedCount > 0){
+                    toast.success('Deleted Successful')
+                }
             console.log(res.data);
             console.log('isLoading', isLoading);
             refetch()
@@ -71,19 +80,19 @@ const SelectedClasses = () => {
                                                     <td>{index + 1}</td>
                                                     <td> <div className="avatar">
                                                         <div className="mask mask-squircle w-12 h-12">
-                                                            <img src={cls?.class?.classImage} alt="Avatar Tailwind CSS Component" />
+                                                            <img src={cls?.classImage} alt="Avatar Tailwind CSS Component" />
                                                         </div>
                                                     </div></td>
-                                                    <td>{cls?.class?.classTitle}</td>
+                                                    <td>{cls?.classTitle}</td>
                                                     {/*  */}
                                                     <td className="text-center space-y-3">
-                                                        <span className="text-lg">{cls?.class?.instructor}</span>
+                                                        <span className="text-lg">{cls?.instructor}</span>
                                                         <br />
-                                                        <span className="badge badge-ghost ">{cls?.class?.instructorEmail}</span>
+                                                        <span className="badge badge-ghost ">{cls?.instructorEmail}</span>
                                                     </td>
 
-                                                    <td className="text-center">{cls?.class?.seat || 0}</td>
-                                                    <td className="text-center">{cls?.class?.price}</td>
+                                                    <td className="text-center">{cls?.seat || 0}</td>
+                                                    <td className="text-center">{cls?.price}</td>
 
 
                                                     <td className="btn-group">

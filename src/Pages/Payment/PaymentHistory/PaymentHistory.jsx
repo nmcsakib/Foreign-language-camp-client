@@ -11,7 +11,7 @@ const PaymentHistory = () => {
     const [paid, setPaid] = useState([])
     const [axiosSecure] = useAxiosSecure()
     useEffect(() => {
-        axiosSecure.get(`/my-payments/${user?.email}`).then(res => {
+        axiosSecure.get(`/payments/my-payments/${user?.email}`).then(res => {
             setPaid(res.data)
             console.log(res.data);
         })

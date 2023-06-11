@@ -10,7 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 
 const CheckoutForm = ({ selectedClass }) => {
-    console.log('from checkout from',selectedClass?.class.classTitle,);
+    console.log(selectedClass?.price);
+    console.log('from checkout from',selectedClass?.classTitle,);
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useAuth();
@@ -21,14 +22,14 @@ const CheckoutForm = ({ selectedClass }) => {
     const [transactionId, setTransactionId] = useState('');
     const navigate = useNavigate()
     useEffect(() => {
-        if (selectedClass.class.price > 0) {
-            axiosSecure.post('/create-payment-intent', { price: selectedClass?.class.price })
+        if (selectedClass.price > 0) {
+            axiosSecure.post('/payments/create-payment-intent', { price: selectedClass?.price })
                 .then(res => {
                     console.log(res.data.clientSecret)
                     setClientSecret(res.data.clientSecret);
                 })
         }
-    }, [selectedClass, axiosSecure])
+    }, [selectedClass.price, axiosSecure])
 
 
     const handleSubmit = async (event) => {
@@ -80,8 +81,8 @@ const CheckoutForm = ({ selectedClass }) => {
         setProcessing(false)
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id);
-            console.log('checkout', selectedClass?.class._id);
-            axiosSecure.patch(`/classes/${selectedClass?.class?._id}`).then(res => {
+            console.log('checkout', selectedClass?._id);
+            axiosSecure.patch(`/classes/seat/${selectedClass?._id}`).then(res => {
                 console.log(res.data);
             }).catch(err => console.log(err))
             // save payment information to the server
@@ -89,12 +90,12 @@ const CheckoutForm = ({ selectedClass }) => {
                 email: user?.email,
                 date: new Date(),
                 transactionId: paymentIntent.id,
-                classTitle: selectedClass?.class.classTitle,
+                classTitle: selectedClass?.classTitle,
                 classId: selectedClass?._id,
-                classImage: selectedClass?.class.classImage,
-                instructor: selectedClass?.class.instructor,
-                instructorEmail: selectedClass?.class.instructorEmail,
-                price: selectedClass?.class.price,
+                classImage: selectedClass?.classImage,
+                instructor: selectedClass?.instructor,
+                instructorEmail: selectedClass?.instructorEmail,
+                price: selectedClass?.price,
               
             }
             axiosSecure.post('/payments', payment)

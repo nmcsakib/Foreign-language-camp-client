@@ -10,7 +10,7 @@ const InstructorsClasses = () => {
     const [axiosSecure] = useAxiosSecure()
 
     const { data: classes = [] } = useQuery(['classes'], async () => {
-        const res = await axiosSecure.get(`/classes/${user?.email}`)
+        const res = await axiosSecure.get(`/classes/instructor/${user?.email}`)
         console.log(res.data);
         return res.data;
     })
@@ -53,7 +53,7 @@ const InstructorsClasses = () => {
             </div></td>
             <td>{cls.classTitle}</td>
             <td className={`${cls.status === 'pending' ? 'text-yellow-600' : cls.status === 'approved' ? 'text-green-500': 'text-red-600'}`}>{cls.status}</td>
-            <td className="text-center">{cls.totalStudent || 0}</td>
+            <td className="text-center">{cls.totalStudents || 0}</td>
             
             {
                 cls.status !== 'denied' ? 

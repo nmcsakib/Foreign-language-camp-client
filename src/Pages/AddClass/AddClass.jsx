@@ -62,42 +62,42 @@ const navigate = useNavigate()
               <div className="p-2 w-1/2" >
                 <div className="relative" >
 
-                  <input readOnly defaultValue={user?.displayName} {...register("name", { required: true })} placeholder="Your Name" type="text" id="name" name="name" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                  <input readOnly defaultValue={user?.displayName} {...register("name", { required: true })} placeholder="Your Name" type="text" id="name" name="name" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline py-2  text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                 </div>
               </div>
               <div className="p-2 w-1/2" >
                 <div className="relative" >
 
-                  <input readOnly defaultValue={user?.email}  {...register("email", { required: true })} placeholder="Your email" type="email" id="email" name="email" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                  <input readOnly defaultValue={user?.email}  {...register("email", { required: true })} placeholder="Your email" type="email" id="email" name="email" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline py-2 text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                </div>
+              </div>
+              <div className="p-2 w-1/2" >
+                <div className="relative" >
+               
+                  <input  {...register("thumbnail", { required: true })} placeholder="Class Thumbnail" type="file" className="file-input py-2 outline bg-white/30  file-input-bordered w-full bg-transparent rounded " />
                 </div>
               </div>
               <div className="p-2 w-1/2" >
                 <div className="relative" >
 
-                  <input  {...register("thumbnail", { required: true })} placeholder="Class Thumbnail" type="file" className="file-input file-input-bordered w-full bg-transparent bg-opacity-50 rounded " />
+                  <input  {...register("title", { required: true })} placeholder="Class Title" type="text" id="title" name="title" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline py-2 text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                 </div>
               </div>
               <div className="p-2 w-1/2" >
                 <div className="relative" >
 
-                  <input  {...register("title", { required: true })} placeholder="Class Title" type="text" id="title" name="title" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                  <input  {...register("seat", { required: true })} placeholder="Available seat" type="number" id="seat" name="seat" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline py-2 text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                 </div>
               </div>
               <div className="p-2 w-1/2" >
                 <div className="relative" >
 
-                  <input  {...register("seat", { required: true })} placeholder="Available seat" type="number" id="seat" name="seat" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                </div>
-              </div>
-              <div className="p-2 w-1/2" >
-                <div className="relative" >
-
-                  <input  {...register("price", { required: true })} placeholder="Price (USD)" type="number" id="price" name="price" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                  <input  {...register("price", { required: true })} placeholder="Price (USD)" type="number" id="price" name="price" className="w-full bg-transparent bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline py-2 text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                 </div>
               </div>
 
               <div className="p-2 w-full" >
-                <button type="submit" className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Add</button>
+                <button type="submit" className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus hover:bg-indigo-600 rounded text-lg">Add</button>
               </div>
 
             </div>

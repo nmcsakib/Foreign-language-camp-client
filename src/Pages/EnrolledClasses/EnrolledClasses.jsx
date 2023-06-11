@@ -10,7 +10,7 @@ const EnrolledClasses = () => {
     const [axiosSecure] = useAxiosSecure();
     
     useEffect(() => {
-      axiosSecure.get(`/enrolled-classes/${user?.email}`).then((data) => {
+      axiosSecure.get(`payments/enrolled-classes/${user?.email}`).then((data) => {
         setEnrolled(data.data);
         console.log(data.data);
       });

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useAdmin from "../../hooks/useAdmin";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { toast } from "react-hot-toast";
 
 const ActiveClasses = ({limit}) => {
   const [axiosSecure] = useAxiosSecure()
@@ -10,7 +11,7 @@ const ActiveClasses = ({limit}) => {
   const {user} = useAuth()
     const [classes, setClasses] = useState([])
     useEffect(() => {
-    axios.get(`http://localhost:5000/active-classes/${ limit || 'full'}`).then(data => {
+    axios.get(`http://localhost:5000/classes/${ limit || 'full'}`).then(data => {
         setClasses(data.data)
         console.log(data);
     })
@@ -18,12 +19,20 @@ const ActiveClasses = ({limit}) => {
 
     const handelSelect = (cls) => {
       console.log('get class', cls);
-      axiosSecure.post('/selected-classes', {class: cls, email: user?.email}).then(res => {
+      
+      axiosSecure.post('/selected-classes', {...cls, email: user?.email}).then(res => {
+       
+        toast.success('Class selected')
         console.log(res);
+      }).catch(err => {
+        if(err?.response?.status === 400){
+          toast.error('Already added this class')
+          return
+        }
       })
     }
     return (
-  <div className="grid grid-cols-3 gap-5 w-11/12 p-10 mx-auto items-center rounded-lg bg-purple-300/20 backdrop-blur-lg">
+  <div className="grid grid-cols-3 gap-5 w-11/12  p-10 mx-auto items-center rounded-lg bg-purple-300/20 backdrop-blur-lg">
 
 
     {

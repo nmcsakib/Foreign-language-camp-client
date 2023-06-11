@@ -1,6 +1,7 @@
 import { FaChalkboard, FaChalkboardTeacher, FaCreditCard, FaHome, FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
+import { Toaster } from "react-hot-toast";
 
 const Dashboard = () => {
   const [role] = useAdmin()
@@ -43,6 +44,7 @@ const Dashboard = () => {
   
   </div>
 </div>
+<Toaster/>
         </div>
     );
 };
