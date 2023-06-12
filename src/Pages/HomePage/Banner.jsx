@@ -12,7 +12,7 @@ import img8 from '../../assets/home/bg8.jpg';
 
 const Banner = () => {
     return (
-        <Carousel className='pt-8' autoPlay={true} interval={1800} infiniteLoop={true} showThumbs={false} showIndicators={false} swipeable={true} emulateTouch={true}>
+        <Carousel className='pt-8' autoPlay={true} interval={1800} infiniteLoop={true} showThumbs={false}  swipeable={false} emulateTouch={false}>
             <div className='flex flex-col md:flex-row justify-center items-center'>
                 <aside className=' md:w-1/2 p-16 flex justify-center items-center'>
                 <img className=' rounded-xl ' src={img1} />

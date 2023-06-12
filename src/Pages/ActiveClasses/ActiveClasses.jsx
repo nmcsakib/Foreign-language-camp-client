@@ -43,16 +43,16 @@ const ActiveClasses = ({ limit }) => {
           <title>All Classes | Foreign-language-camp</title>
         </Helmet>
       }
-      <div className="grid md:grid-cols-3 gap-5 w-11/12  p-10 mx-auto items-center rounded-lg bg-purple-300/20 backdrop-blur-lg">
+      <div className="grid md:grid-cols-3 md:mx-auto gap-5 w-11/12  md:p-10 px-5 items-center rounded-lg bg-purple-300/20 backdrop-blur-lg">
 
 
         {
           classes?.map(cls =>
-            <div key={cls._id} className={`${cls.seat !== 0 ? 'bg-green-400/30' : 'bg-red-500/30'} card border shadow-xl`}>
-              <figure><img className="w-96 md:w-full h-48" src={cls?.image} alt="Shoes" /></figure>
+            <div key={cls._id} className={`${cls.seat !== 0 ? 'bg-green-400/30' : 'bg-red-500/30'} w-3/4 md:w-full card border shadow-xl`}>
+              <figure><img className="w-full h-48" src={cls?.image} alt="Shoes" /></figure>
               <div className="card-body">
                 <h2 className="text-lg uppercase">{cls.title}</h2>
-                <span className="badge badge-outline py-2 ">{cls.instructorEmail}</span>
+                <span className="badge badge-outline py-2">{cls.instructorEmail}</span>
 
                 <div className="card-actions justify-start">
                   <div className="flex gap-3">

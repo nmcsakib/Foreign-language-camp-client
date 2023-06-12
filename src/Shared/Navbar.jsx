@@ -18,7 +18,7 @@ const Navbar = () => {
             <div className="navbar w-11/12 md:w-3/4 z-20 lg-py-0 bg-purple-500/30 backdrop-blur-md rounded-lg  fixed left-1/2 bottom-10 transform -translate-x-1/2 ">
   <div className="navbar-start w-0 md:w-1/2">
    
-    <a className="btn btn-ghost normal-case hidden text-xl">F L C</a>
+    <a className="btn btn-ghost normal-case hidden md:block text-xl">F L C</a>
   </div>
   <div className="navbar-center flex grow-1">
     <ul className="menu menu-horizontal space-x-5">
