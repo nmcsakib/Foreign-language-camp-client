@@ -11,7 +11,7 @@ const AllInstructors = ({ limit }) => {
   useEffect(() => {
     axios.get(`https://foreign-language-camp-server.vercel.app/instructors/${limit || 'full'}`).then(data => {
       setInstructors(data.data)
-      
+
     })
   }, [limit])
   return (

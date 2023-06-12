@@ -16,8 +16,9 @@ const SelectedClasses = () => {
     const { data: selected = [], isLoading, refetch } = useQuery(['selectedClass'], async () => {
         const res = await axiosSecure.get(`/selected-classes/${user?.email}`).catch(err => {
             toast.error(err?.message)
-            console.log(err)})
-       
+            console.log(err)
+        })
+
 
         // console.log('isLoading 18', isLoading);
         return res.data;
@@ -28,21 +29,23 @@ const SelectedClasses = () => {
 
 
     const handelDelete = (id) => {
-        
+
         axiosSecure.delete(`/selected-classes/${id}`, {
             mode: 'no-cors',
             headers: {
-              'Content-Type': 'application/json',
-              // Other headers if needed
-            } } ).then(res => {
-                if(res.data.deletedCount > 0){
-                    toast.success('Deleted Successful')
-                }
-          
+                'Content-Type': 'application/json',
+                // Other headers if needed
+            }
+        }).then(res => {
+            if (res.data.deletedCount > 0) {
+                toast.success('Deleted Successful')
+            }
+
             refetch()
         }).catch(err => {
             toast.error(err?.message)
-            console.log(err)})
+            console.log(err)
+        })
 
 
     }
@@ -51,7 +54,7 @@ const SelectedClasses = () => {
 
     return (
         <div className="w-full mx-auto min-h-screen md:w-11/12 p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
-            <SectionTitle title="Your Selected Classes"/>
+            <SectionTitle title="Your Selected Classes" />
             <div className="overflow-x-auto w-full">
 
                 {
@@ -80,29 +83,29 @@ const SelectedClasses = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-        {
-            selected?.map((cls, index) => <tr key={cls._id}>
-                <td>{index + 1}</td>
-                <td> <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                        <img src={cls?.image} alt="Avatar Tailwind CSS Component" />
-                    </div>
-                </div></td>
-                <td>{cls?.title}</td>
-                {/*  */}
-                <td className="text-center space-y-3">
-                    <span className="text-lg">{cls?.instructor}</span>
-                    <br />
-                    <span className="badge badge-ghost ">{cls?.instructorEmail}</span>
-                </td>
+                                            {
+                                                selected?.map((cls, index) => <tr key={cls._id}>
+                                                    <td>{index + 1}</td>
+                                                    <td> <div className="avatar">
+                                                        <div className="mask mask-squircle w-12 h-12">
+                                                            <img src={cls?.image} alt="Avatar Tailwind CSS Component" />
+                                                        </div>
+                                                    </div></td>
+                                                    <td>{cls?.title}</td>
+                                                    {/*  */}
+                                                    <td className="text-center space-y-3">
+                                                        <span className="text-lg">{cls?.instructor}</span>
+                                                        <br />
+                                                        <span className="badge badge-ghost ">{cls?.instructorEmail}</span>
+                                                    </td>
 
-                <td className="text-center">{cls?.seat || 0}</td>
-                <td className="text-center">{cls?.price}</td>
+                                                    <td className="text-center">{cls?.seat || 0}</td>
+                                                    <td className="text-center">{cls?.price}</td>
 
 
-                <td className="btn-group">
-                    <Link to="/dashboard/payment" state={{ selectedClass: cls }} className="btn btn-sm pt-2 tooltip tooltip-left" data-tip="Pay"><FaCreditCard /></Link>
-                    <button onClick={() => handelDelete(cls?._id)} className="btn btn-sm tooltip" data-tip="Delete"><FaTrashAlt /></button>
+                                                    <td className="btn-group">
+                                                        <Link to="/dashboard/payment" state={{ selectedClass: cls }} className="btn btn-sm pt-2 tooltip tooltip-left" data-tip="Pay"><FaCreditCard /></Link>
+                                                        <button onClick={() => handelDelete(cls?._id)} className="btn btn-sm tooltip" data-tip="Delete"><FaTrashAlt /></button>
 
                                                     </td>
                                                 </tr>)

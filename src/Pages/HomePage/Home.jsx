@@ -10,10 +10,10 @@ const Home = () => {
             <Helmet>
                 <title>Home - Foreign-language-camp</title>
             </Helmet>
-            <Banner/>     
-            <PopularInstructors/>  
-            <PopularClasses/> 
-            <DownloadApp/>
+            <Banner />
+            <PopularInstructors />
+            <PopularClasses />
+            <DownloadApp />
         </div>
     );
 };

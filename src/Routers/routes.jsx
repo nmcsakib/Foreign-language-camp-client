@@ -16,69 +16,65 @@ import PaymentHistory from "../Pages/Payment/PaymentHistory/PaymentHistory";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
-   {
+  {
     path: '/',
     element: <Main/>,
     children: [
-        {
-            path: '/',
-            element: <Home/>
-        },
-        {
-            path: '/all-instructors',
-            element: <AllInstructors/>
-        },
-        {
-            path: '/active-classes',
-            element: <ActiveClasses/>
-        },
-        
-        {
-            path: '/authentication',
-            element: <Authentication/>
-        },
+      {
+        path: '/',
+        element: <Home/>
+      },
+      {
+        path: '/all-instructors',
+        element: <AllInstructors/>
+      },
+      {
+        path: '/active-classes',
+        element: <ActiveClasses/>
+      },
+      {
+        path: '/authentication',
+        element: <Authentication/>
+      },
     ],
     errorElement: <ErrorPage/>
-   },
-   {
+  },
+  {
     path: '/dashboard',
     element: <Dashboard/>,
     children: [
-        {
-            path: '/dashboard/all-users',
-            element: <AllUsers/>
-        },
-        {
-            path: '/dashboard/all-classes',
-            element: <AllClasses/>
-        },
-        {
-            path: '/dashboard/my-classes',
-            element: <InstructorsClasses/>
-        },
-        {
-            path: '/dashboard/add-class',
-            element: <AddClass/>
-        },
-       
-        {
-            path: '/dashboard/selected-classes',
-            element: <SelectedClasses/>
-        },
-        {
-            path: '/dashboard/enrolled-classes',
-            element: <EnrolledClasses/>
-        },
-        {
-            path: '/dashboard/payment',
-            element: <Payment/>
-        },
-        {
-            path: '/dashboard/my-payments',
-            element: <PaymentHistory/>
-        },
+      {
+        path: '/dashboard/all-users',
+        element: <AllUsers/>
+      },
+      {
+        path: '/dashboard/all-classes',
+        element: <AllClasses/>
+      },
+      {
+        path: '/dashboard/my-classes',
+        element: <InstructorsClasses/>
+      },
+      {
+        path: '/dashboard/add-class',
+        element: <AddClass/>
+      },
+      {
+        path: '/dashboard/selected-classes',
+        element: <SelectedClasses/>
+      },
+      {
+        path: '/dashboard/enrolled-classes',
+        element: <EnrolledClasses/>
+      },
+      {
+        path: '/dashboard/payment',
+        element: <Payment/>
+      },
+      {
+        path: '/dashboard/my-payments',
+        element: <PaymentHistory/>
+      },
     ]
-   },
-   
-
-])
+  },
+]);

@@ -11,7 +11,7 @@ import { toast } from "react-hot-toast";
 
 
 const CheckoutForm = ({ selectedClass }) => {
-    
+
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useAuth();
@@ -25,7 +25,7 @@ const CheckoutForm = ({ selectedClass }) => {
         if (selectedClass.price > 0) {
             axiosSecure.post('/payments/create-payment-intent', { price: selectedClass?.price })
                 .then(res => {
-                 
+
                     setClientSecret(res.data.clientSecret);
                 })
         }
@@ -50,7 +50,7 @@ const CheckoutForm = ({ selectedClass }) => {
         })
 
         if (error) {
-            
+
             setCardError(error.message);
         }
         else {
@@ -77,20 +77,21 @@ const CheckoutForm = ({ selectedClass }) => {
             console.log(confirmError);
         }
 
-        
+
         setProcessing(false)
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id);
-            
+
             axiosSecure.patch(`/classes/seat/${selectedClass?._id}`).then(() => {
-                
+
             }).catch(err => {
                 toast.error(err?.message)
-                console.log(err)})
+                console.log(err)
+            })
             // save payment information to the server
             const payment = {
                 email: user?.email,
-               
+
                 transactionId: paymentIntent.id,
                 title: selectedClass?.title,
                 classId: selectedClass?._id,
@@ -98,17 +99,18 @@ const CheckoutForm = ({ selectedClass }) => {
                 instructor: selectedClass?.instructor,
                 instructorEmail: selectedClass?.instructorEmail,
                 price: selectedClass?.price,
-              
+
             }
             axiosSecure.post('/payments', payment)
                 .then(res => {
-                    
+
                     if (res.data.deleteResult.deletedCount > 0) {
-                       
+
                         Swal.fire(
-                           { title: 'success',
-                            showCloseButton: true
-                        }
+                            {
+                                title: 'success',
+                                showCloseButton: true
+                            }
                         )
                         navigate('/dashboard/enrolled-classes')
                     }
@@ -124,7 +126,7 @@ const CheckoutForm = ({ selectedClass }) => {
                 <CardElement
                     options={{
                         style: {
-                            base: { 
+                            base: {
                                 fontSize: '16px',
                                 color: '#424770',
                                 '::placeholder': {

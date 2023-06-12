@@ -3,40 +3,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body{
-    font-family: 'DM Sans';
-    font-weight: 700;
-    
+
+/* Set the font family and weight for the body */
+body {
+  font-family: 'DM Sans';
+  font-weight: 700;
 }
+
+/* Styles for the progress bar */
 .progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 10px;
-    background: #bd4bbd;
-    border-radius: 0 20px 20px 0;
-    transform-origin: 0%;
-    z-index: 1000;
-  }
-.bgDark{
-    background-image: url('../src/assets/bg.jpg');
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: #bd4bbd;
+  border-radius: 0 20px 20px 0;
+  transform-origin: 0%;
+  z-index: 1000;
 }
-.bgLight{
-    color: #110f29;
-    background-image: url('../src/assets/bgLight.jpg');
+
+/* Background styles for dark theme */
+.bgDark {
+  background-image: url('../src/assets/bg.jpg');
 }
-.navbarItem{
-    @apply text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 bg-purple-500 shadow 
+
+/* Background styles for light theme */
+.bgLight {
+  color: #110f29;
+  background-image: url('../src/assets/bgLight.jpg');
 }
-.logs{
-    @apply btn btn-circle text-slate-900 transform hover:bg-purple-500/30 hover:translate-y-[-10px] p-3 text-2xl bg-purple-500 shadow 
+
+/* Styles for the navbar item */
+.navbarItem {
+  /* Apply Tailwind CSS utility classes using @apply */
+  @apply text-slate-900 transform hover:translate-y-[-10px] rounded-lg p-3 bg-purple-500 shadow;
 }
-.footer{
-    /* background-position: 0% 00px ; */
-    background-size: cover;
-    
-    z-index: 10;
-    background-repeat: no-repeat;
-    background-image: url("../src/assets/footer.png");
+
+/* Styles for the log-in and sign-up buttons */
+.logs {
+  /* Apply Tailwind CSS utility classes using @apply */
+  @apply btn btn-circle text-slate-900 transform hover:bg-purple-500/30 hover:translate-y-[-10px] p-3 text-2xl bg-purple-500 shadow;
+}
+
+/* Styles for the footer */
+.footer {
+  /* Apply background image and other styles */
+  
+  background-size: cover;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-image: url("../src/assets/footer.png");
 }
