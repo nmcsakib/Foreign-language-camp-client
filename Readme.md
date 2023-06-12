@@ -1,5 +1,5 @@
 # Foreign Language Camp
-
+link - [foreign Language Camp](https://foreign-language-camping.web.app/)
 🚀 Welcome to My Awesome Website! This repository contains the necessary packages to run and develop the website.
 
 ## Our Features
@@ -91,3 +91,14 @@
 | swiper                  | ^9.3.2    | Touch slider library for the web                 |
 | tailwindcss             | ^3.3.2    | Utility-first CSS framework                      |
 | vite                    | ^4.3.9    | Build tooling for modern web apps                |
+
+
+```
+See admin works as an admin
+---------------------------
+test.admin@hmail.com | 123456aA@
+
+See instructors work as an instructor
+-------------------------------------
+test.instructor@hmail.com | 1n$tructOR
+```
