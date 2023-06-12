@@ -92,7 +92,7 @@ const CheckoutForm = ({ selectedClass }) => {
                 transactionId: paymentIntent.id,
                 title: selectedClass?.title,
                 classId: selectedClass?._id,
-                image: selectedClass?.image,
+                classImage: selectedClass?.image,
                 instructor: selectedClass?.instructor,
                 instructorEmail: selectedClass?.instructorEmail,
                 price: selectedClass?.price,
@@ -122,7 +122,7 @@ const CheckoutForm = ({ selectedClass }) => {
                 <CardElement
                     options={{
                         style: {
-                            base: {
+                            base: { 
                                 fontSize: '16px',
                                 color: '#424770',
                                 '::placeholder': {

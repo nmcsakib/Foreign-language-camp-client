@@ -47,7 +47,7 @@ const Authentication = () => {
                     console.log(res.data);
                     const saveUser = { name: displayName, photoURL, email, role: "student" }
                     console.log(saveUser);
-                    axios.post('https://foreign-language-camp-server.vercel.app/users', saveUser).then(res => {
+                    axios.post('http://localhost:5000/users', saveUser).then(res => {
                         updateUserProfile(displayName, photoURL).then((res) => {
                             toast.success('Sign Up successful')
                             console.log(res.data);

@@ -5,6 +5,7 @@ import { FaCreditCard, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
+import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
 const SelectedClasses = () => {
     const { user } = useAuth();
@@ -46,7 +47,8 @@ const SelectedClasses = () => {
 
 
     return (
-        <div className="w-full min-h-screen md:w-5/6 mr-auto p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
+        <div className="w-full mx-auto min-h-screen md:w-11/12 p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
+            <SectionTitle title="Your Selected Classes"/>
             <div className="overflow-x-auto w-full">
 
                 {

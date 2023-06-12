@@ -7,13 +7,13 @@ const Dashboard = () => {
   const [role] = useAdmin()
     return (
         <div className="bgDark">
-            <div className="drawer lg:drawer-open">
+            <div className="drawer">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-  <div className="drawer-content relative main-container flex justify-center">
+  <div className="drawer-content min-h-screen relative main-container flex justify-center">
     {/* Page content here */}
 
        <Outlet/>
-    <label htmlFor="my-drawer-2" className="btn fixed top-10 left-1 btn-primary drawer-button lg:hidden"><FaBars/></label>
+    <label htmlFor="my-drawer-2" className="btn fixed top-10 left-10 btn-primary drawer-button "><FaBars/></label>
   
   </div> 
   <div className="drawer-side">

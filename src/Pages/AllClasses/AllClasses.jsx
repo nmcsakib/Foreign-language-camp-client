@@ -68,9 +68,9 @@ const AllClasses = () => {
 
   return (
     <>
-    <div className="w-full p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
+    <div className="lg:w-11/12 mx-auto p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
     <SectionTitle title="All Classes"/>
-      <div className="overflow-x-scroll w-full">
+      <div className="overflow-x-auto w-full mx-auto">
         {classes.length < 1 ?
           <h2 className="text-3xl text-center">No Classes Available ! </h2> :
           <table className="table">

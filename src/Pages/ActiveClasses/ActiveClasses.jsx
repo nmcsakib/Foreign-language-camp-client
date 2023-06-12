@@ -14,16 +14,17 @@ const ActiveClasses = ({ limit }) => {
   const { user } = useAuth()
   const [classes, setClasses] = useState([])
   useEffect(() => {
-    axios.get(`https://foreign-language-camp-server.vercel.app/classes/${limit || 'full'}`).then(data => {
+    axios.get(`http://localhost:5000/classes/${limit || 'full'}`).then(data => {
       setClasses(data.data)
       console.log(data);
     })
   }, [limit])
 
   const handelSelect = (cls) => {
-    console.log('get class', cls);
-
-    axiosSecure.post('/selected-classes', { ...cls, email: user?.email }).then(res => {
+   
+  const {_id, ...selectedClass} = cls;
+  console.log(_id, selectedClass);
+    axiosSecure.post('/selected-classes', { ...selectedClass, email: user?.email }).then(res => {
 
       toast.success('Class selected')
       console.log(res);
