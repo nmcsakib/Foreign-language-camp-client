@@ -28,8 +28,8 @@ const InstructorsClasses = () => {
         <div className="w-full p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
             <div className="overflow-x-auto w-full">
                 {classes.length < 1 ?
-                    <h2 className="text-3xl text-center">You selected No classes ! <br />
-                        <Link to="/add-class" className="text-xl font-extralight hover:underline hover:text-blue-400">Add a class</Link>
+                    <h2 className="text-3xl text-center">No class is added by you yet ! <br />
+                        <Link to="/dashboard/add-class" className="text-xl font-extralight hover:underline hover:text-blue-400">Add a class</Link>
                     </h2> :
                     <table className="table">
                         <thead>
