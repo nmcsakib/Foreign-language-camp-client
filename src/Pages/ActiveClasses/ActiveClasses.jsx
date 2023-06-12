@@ -14,7 +14,7 @@ const ActiveClasses = ({ limit }) => {
   const { user } = useAuth()
   const [classes, setClasses] = useState([])
   useEffect(() => {
-    axios.get(`http://localhost:5000/classes/${limit || 'full'}`).then(data => {
+    axios.get(`https://foreign-language-camp-server.vercel.app/classes/${limit || 'full'}`).then(data => {
       setClasses(data.data)
       console.log(data);
     })
