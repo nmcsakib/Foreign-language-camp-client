@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 const Payment = () => {
     const location = useLocation()
     const selectedClass = location?.state?.selectedClass;
-    console.log('from payment',location);
+    
     const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
     return (
         <div>

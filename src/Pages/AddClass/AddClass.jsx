@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 
@@ -27,10 +28,10 @@ const navigate = useNavigate()
           if(imgResponse.success){
 
               const imgURL = imgResponse.data.display_url || 'https://picsum.photos/200/300';
-              console.log(imgURL);
+              
           const { email, name, title, seat, price } = data
           const newClass = { instructor: name, instructorEmail: email, image: imgURL, title: title, price: parseFloat(price), seat: parseFloat(seat), status: 'pending' }
-          console.log(newClass);
+          
           axiosSecure.post('/classes', newClass).then(data => {
             console.log('after posting new menu item', data.data)
             if (data.data.insertedId) {
@@ -46,7 +47,9 @@ const navigate = useNavigate()
             }
           })
         }
-      }).catch(err => console.log(err))
+      }).catch(err => {
+        toast.error(err?.message)
+        console.log(err)})
   }
 
   return (

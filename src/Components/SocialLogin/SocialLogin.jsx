@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from 'axios';
+import { toast } from "react-hot-toast";
 const SocialLogin = () => {
     const navigate = useNavigate();
     const {googleSignIn} = useAuth()
@@ -10,12 +11,14 @@ const SocialLogin = () => {
         googleSignIn().then((res) => {
             console.log(res.user);
             const saveUser = {name: res?.user?.displayName, photoURL: res?.user?.photoURL, email: res?.user?.email, role: "student" } 
-            axios.post('https://foreign-language-camp-server.vercel.app/users', saveUser).then(res => {
-                console.log(res.data);
+            axios.post('https://foreign-language-camp-server.vercel.app/users', saveUser).then(() => {
+                
             })
             navigate('/')
-            console.log(res.user);
-        }).catch(err => console.log(err))
+            
+        }).catch(err => {
+            toast.error(err?.message)
+            console.log(err)})
     }
     return (
       <>

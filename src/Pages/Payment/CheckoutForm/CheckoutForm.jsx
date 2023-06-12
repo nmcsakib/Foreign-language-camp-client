@@ -7,11 +7,11 @@ import useAuth from "../../../hooks/useAuth";
 import './CheckoutForm.css'
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 
 const CheckoutForm = ({ selectedClass }) => {
-    console.log(selectedClass?.price);
-    console.log('from checkout from',selectedClass?.title,);
+    
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useAuth();
@@ -25,7 +25,7 @@ const CheckoutForm = ({ selectedClass }) => {
         if (selectedClass.price > 0) {
             axiosSecure.post('/payments/create-payment-intent', { price: selectedClass?.price })
                 .then(res => {
-                    console.log(res.data.clientSecret)
+                 
                     setClientSecret(res.data.clientSecret);
                 })
         }
@@ -50,7 +50,7 @@ const CheckoutForm = ({ selectedClass }) => {
         })
 
         if (error) {
-            console.log('error', error)
+            
             setCardError(error.message);
         }
         else {
@@ -77,14 +77,16 @@ const CheckoutForm = ({ selectedClass }) => {
             console.log(confirmError);
         }
 
-        console.log('payment intent', paymentIntent)
+        
         setProcessing(false)
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id);
-            console.log('checkout', selectedClass?._id);
-            axiosSecure.patch(`/classes/seat/${selectedClass?._id}`).then(res => {
-                console.log(res.data);
-            }).catch(err => console.log(err))
+            
+            axiosSecure.patch(`/classes/seat/${selectedClass?._id}`).then(() => {
+                
+            }).catch(err => {
+                toast.error(err?.message)
+                console.log(err)})
             // save payment information to the server
             const payment = {
                 email: user?.email,
@@ -100,7 +102,7 @@ const CheckoutForm = ({ selectedClass }) => {
             }
             axiosSecure.post('/payments', payment)
                 .then(res => {
-                    console.log(res.data);
+                    
                     if (res.data.deleteResult.deletedCount > 0) {
                        
                         Swal.fire(

@@ -14,11 +14,11 @@ const AllClasses = () => {
 
   const { data: classes = [], refetch, isLoading } = useQuery(['classes'], async () => {
     const res = await axiosSecure.get(`/classes`)
-    console.log(res.data);
+    
     return res.data;
   })
   const [feedbackValue, setFeedbackValue] = useState('f')
-  console.log(feedbackValue);
+  
 
 
   const handelStatus = (cls, status) => {
@@ -39,27 +39,29 @@ const AllClasses = () => {
 
 
     } else {
-      axiosSecure.patch(`/classes/${cls._id}`, { status }).then(data => {
-        console.log(data);
+      axiosSecure.patch(`/classes/${cls._id}`, { status }).then(() => {
+        
         toast.success('class added successfully')
         refetch()
-      }).catch(err => console.log(err))
-      console.log(status);
+      }).catch(err => {
+        toast.error(err?.message)
+        console.log(err)})
+      
     }
     const handelFeedback = (t) => {
-      console.log('hello world', feedbackValue);
+      
 
       if (feedbackValue !== 'f') {
 
-        axiosSecure.patch(`/classes/${cls._id}`, { status, feedback: feedbackValue }).then(data => {
-          console.log(data);
+        axiosSecure.patch(`/classes/${cls._id}`, { status, feedback: feedbackValue }).then(() => {
+          
           toast('Denied')
 
           refetch()
         }).catch(err => {
           toast.error(err?.message)
         })
-        console.log(status);
+        
 
       }
       toast.dismiss(t.id)

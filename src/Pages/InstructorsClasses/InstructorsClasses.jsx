@@ -15,7 +15,7 @@ const InstructorsClasses = () => {
         return res.data;
     })
     const handelFeedback = (feedback) => {
-        console.log(feedback);
+        
         Swal.fire({
          
             title: feedback,

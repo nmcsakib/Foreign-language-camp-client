@@ -14,10 +14,12 @@ const SelectedClasses = () => {
 
 
     const { data: selected = [], isLoading, refetch } = useQuery(['selectedClass'], async () => {
-        const res = await axiosSecure.get(`/selected-classes/${user?.email}`).catch(err => console.log(err))
-        console.log(res.data);
+        const res = await axiosSecure.get(`/selected-classes/${user?.email}`).catch(err => {
+            toast.error(err?.message)
+            console.log(err)})
+       
 
-        console.log('isLoading 18', isLoading);
+        // console.log('isLoading 18', isLoading);
         return res.data;
     }
 
@@ -26,7 +28,7 @@ const SelectedClasses = () => {
 
 
     const handelDelete = (id) => {
-        console.log(id)
+        
         axiosSecure.delete(`/selected-classes/${id}`, {
             mode: 'no-cors',
             headers: {
@@ -36,10 +38,11 @@ const SelectedClasses = () => {
                 if(res.data.deletedCount > 0){
                     toast.success('Deleted Successful')
                 }
-            console.log(res.data);
-            console.log('isLoading', isLoading);
+          
             refetch()
-        }).catch(err => console.log(err))
+        }).catch(err => {
+            toast.error(err?.message)
+            console.log(err)})
 
 
     }

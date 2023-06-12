@@ -2,20 +2,23 @@ import { FaUserEdit, FaUserShield } from "react-icons/fa";
 import useUsers from "../../hooks/useUsers";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
+import { toast } from "react-hot-toast";
 
 const AllUsers = () => {
   
     const [users, refetch] = useUsers();
-    console.log(users);
+    
     const [axiosSecure] = useAxiosSecure();
 
     const handelActions = ([user, role])  => {
-      console.log(role);
+      
       axiosSecure.patch(`/users/admin/${user._id}`, {role}).then(data => {
         console.log(data);
         refetch()
-      }).catch(err => console.log(err))
-      console.log(role);
+      }).catch(err => {
+        toast.error(err?.message)
+        console.log(err)})
+      
     }
     return (
       <>

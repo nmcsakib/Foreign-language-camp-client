@@ -25,14 +25,14 @@ const Authentication = () => {
     const onLoginSubmit = data => {
         const { email, password } = data;
         signIn(email, password)
-            .then(res => {
-                console.log(res.user);
+            .then(() => {
+                
                 toast.success('login successful')
                 reset()
                 navigate("/")
             })
             .catch(err => {
-                console.log(err);
+                
                 toast.error(err?.message || 'Login unsuccessful')
             })
     }
@@ -40,21 +40,21 @@ const Authentication = () => {
 
 
         if (data.SignUpPassword === data.confirmPass) {
-            console.log(data);
+            
             const { email, SignUpPassword, displayName, photoURL } = data;
             createUser(email, SignUpPassword)
-                .then(res => {
-                    console.log(res.data);
+                .then(() => {
+                    
                     const saveUser = { name: displayName, photoURL, email, role: "student" }
-                    console.log(saveUser);
-                    axios.post('https://foreign-language-camp-server.vercel.app/users', saveUser).then(res => {
-                        updateUserProfile(displayName, photoURL).then((res) => {
+                    
+                    axios.post('https://foreign-language-camp-server.vercel.app/users', saveUser).then(() => {
+                        updateUserProfile(displayName, photoURL).then(() => {
                             toast.success('Sign Up successful')
-                            console.log(res.data);
+                            
                         }).catch(err => {
                             toast.err(err?.message || 'Sign up unsuccessful')
                         })
-                        console.log(res)
+                        
                         navigate("/")
 
                     })

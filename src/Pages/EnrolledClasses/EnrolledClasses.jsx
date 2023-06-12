@@ -12,7 +12,7 @@ const EnrolledClasses = () => {
     useEffect(() => {
       axiosSecure.get(`payments/enrolled-classes/${user?.email}`).then((data) => {
         setEnrolled(data.data);
-        console.log(data.data);
+        
       });
     }, [axiosSecure, user?.email]);
     return (

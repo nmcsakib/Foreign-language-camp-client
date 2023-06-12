@@ -16,18 +16,18 @@ const ActiveClasses = ({ limit }) => {
   useEffect(() => {
     axios.get(`https://foreign-language-camp-server.vercel.app/classes/${limit || 'full'}`).then(data => {
       setClasses(data.data)
-      console.log(data);
+      
     })
   }, [limit])
 
   const handelSelect = (cls) => {
    
   const {_id, ...selectedClass} = cls;
-  console.log(_id, selectedClass);
-    axiosSecure.post('/selected-classes', { ...selectedClass, email: user?.email }).then(res => {
+  console.log(_id);
+    axiosSecure.post('/selected-classes', { ...selectedClass, email: user?.email }).then(() => {
 
       toast.success('Class selected')
-      console.log(res);
+      
     }).catch(err => {
       if (err?.response?.status === 400) {
         toast.error('Already added this class')

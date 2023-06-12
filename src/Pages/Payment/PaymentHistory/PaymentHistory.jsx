@@ -13,10 +13,10 @@ const PaymentHistory = () => {
     useEffect(() => {
         axiosSecure.get(`/payments/my-payments/${user?.email}`).then(res => {
             setPaid(res.data)
-            console.log(res.data);
+         
         })
     },[axiosSecure, user?.email])
-    console.log(paid);
+ 
 
     //Formate date
     const formatDate = (dateString) => {

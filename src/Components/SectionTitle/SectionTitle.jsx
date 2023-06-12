@@ -3,7 +3,7 @@ import { ThemeContext } from "../../Layouts/Main/Main";
 
 const SectionTitle = ({title}) => {
     const isChecked = useContext(ThemeContext)
-    console.log(isChecked);
+    
     return (
         <div className={`${isChecked ? 'text-white' : 'text-[#110f29]'}`}>
             
