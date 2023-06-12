@@ -1,7 +1,7 @@
 
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { FaInbox, FaTrashAlt } from "react-icons/fa";
+import { FaCreditCard, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
@@ -46,7 +46,7 @@ const SelectedClasses = () => {
 
 
     return (
-        <div className="w-full p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
+        <div className="w-full min-h-screen md:w-5/6 mr-auto p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
             <div className="overflow-x-auto w-full">
 
                 {
@@ -75,29 +75,29 @@ const SelectedClasses = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {
-                                                selected?.map((cls, index) => <tr key={cls._id}>
-                                                    <td>{index + 1}</td>
-                                                    <td> <div className="avatar">
-                                                        <div className="mask mask-squircle w-12 h-12">
-                                                            <img src={cls?.image} alt="Avatar Tailwind CSS Component" />
-                                                        </div>
-                                                    </div></td>
-                                                    <td>{cls?.title}</td>
-                                                    {/*  */}
-                                                    <td className="text-center space-y-3">
-                                                        <span className="text-lg">{cls?.instructor}</span>
-                                                        <br />
-                                                        <span className="badge badge-ghost ">{cls?.instructorEmail}</span>
-                                                    </td>
+        {
+            selected?.map((cls, index) => <tr key={cls._id}>
+                <td>{index + 1}</td>
+                <td> <div className="avatar">
+                    <div className="mask mask-squircle w-12 h-12">
+                        <img src={cls?.image} alt="Avatar Tailwind CSS Component" />
+                    </div>
+                </div></td>
+                <td>{cls?.title}</td>
+                {/*  */}
+                <td className="text-center space-y-3">
+                    <span className="text-lg">{cls?.instructor}</span>
+                    <br />
+                    <span className="badge badge-ghost ">{cls?.instructorEmail}</span>
+                </td>
 
-                                                    <td className="text-center">{cls?.seat || 0}</td>
-                                                    <td className="text-center">{cls?.price}</td>
+                <td className="text-center">{cls?.seat || 0}</td>
+                <td className="text-center">{cls?.price}</td>
 
 
-                                                    <td className="btn-group">
-                                                        <Link to="/dashboard/payment" state={{ selectedClass: cls }} className="btn btn-sm tooltip tooltip-left" data-tip="Pay"><FaInbox /></Link>
-                                                        <button onClick={() => handelDelete(cls?._id)} className="btn btn-sm tooltip tooltip-left" data-tip="Delete"><FaTrashAlt /></button>
+                <td className="btn-group">
+                    <Link to="/dashboard/payment" state={{ selectedClass: cls }} className="btn btn-sm pt-2 tooltip tooltip-left" data-tip="Pay"><FaCreditCard /></Link>
+                    <button onClick={() => handelDelete(cls?._id)} className="btn btn-sm tooltip" data-tip="Delete"><FaTrashAlt /></button>
 
                                                     </td>
                                                 </tr>)

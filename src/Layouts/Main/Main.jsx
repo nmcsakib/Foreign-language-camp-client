@@ -4,6 +4,8 @@ import Footer from "../../Shared/Footer";
 import { Toaster } from "react-hot-toast";
 import useScrollTop from "../../hooks/useScrollTop";
 import { createContext, useState } from "react";
+import { motion, useScroll } from "framer-motion";
+import { HelmetProvider } from "react-helmet-async";
 
 export  const ThemeContext = createContext()
 const Main = () => {
@@ -11,8 +13,13 @@ const Main = () => {
 
     const {pathname} = useLocation()
     useScrollTop(pathname)
+    const { scrollYProgress } = useScroll();
     return (
-        <div className={`${isChecked ? 'bgDark' : 'bgLight'} main-container  max-w-7xl min-h-screen relative`}>
+        <div className={`${isChecked ? 'bgDark' : 'bgLight'}  max-w-7xl min-h-screen relative`}>
+            <HelmetProvider>
+              
+
+            <motion.div className="progress-bar" style={{scaleX: scrollYProgress}}></motion.div>
             <div className="fixed w-20 rounded-full top-5 right-2 z-50">
             <label className="swap swap-rotate">
   
@@ -35,7 +42,10 @@ const Main = () => {
             </div>
             <Toaster />
             <Footer/>
+
             </ThemeContext.Provider>
+           
+            </HelmetProvider>
         </div>
     );
 };

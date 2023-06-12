@@ -1,4 +1,4 @@
-import { FaChalkboard, FaChalkboardTeacher, FaCreditCard, FaHome, FaUsers } from "react-icons/fa";
+import { FaBars, FaChalkboard, FaChalkboardTeacher, FaCreditCard, FaHome, FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { Toaster } from "react-hot-toast";
@@ -6,14 +6,14 @@ import { Toaster } from "react-hot-toast";
 const Dashboard = () => {
   const [role] = useAdmin()
     return (
-        <div>
+        <div className="bgDark">
             <div className="drawer lg:drawer-open">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content relative main-container flex justify-center">
     {/* Page content here */}
 
        <Outlet/>
-    <label htmlFor="my-drawer-2" className="btn fixed top-10 left-1 btn-primary drawer-button lg:hidden">Open drawer</label>
+    <label htmlFor="my-drawer-2" className="btn fixed top-10 left-1 btn-primary drawer-button lg:hidden"><FaBars/></label>
   
   </div> 
   <div className="drawer-side">

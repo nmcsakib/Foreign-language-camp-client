@@ -8,6 +8,17 @@ body{
     font-weight: 700;
     
 }
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: #bd4bbd;
+    border-radius: 0 20px 20px 0;
+    transform-origin: 0%;
+    z-index: 1000;
+  }
 .bgDark{
     background-image: url('../src/assets/bg.jpg');
 }

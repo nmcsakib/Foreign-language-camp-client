@@ -49,6 +49,10 @@ export const router = createBrowserRouter([
             element: <AllUsers/>
         },
         {
+            path: '/dashboard/all-classes',
+            element: <AllClasses/>
+        },
+        {
             path: '/dashboard/my-classes',
             element: <InstructorsClasses/>
         },
@@ -56,10 +60,7 @@ export const router = createBrowserRouter([
             path: '/dashboard/add-class',
             element: <AddClass/>
         },
-        {
-            path: '/dashboard/all-classes',
-            element: <AllClasses/>
-        },
+       
         {
             path: '/dashboard/selected-classes',
             element: <SelectedClasses/>

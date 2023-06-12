@@ -16,11 +16,11 @@ const EnrolledClasses = () => {
       });
     }, [axiosSecure, user?.email]);
     return (
-        <div className="w-full p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
+        <div className="w-full min-h-screen p-10 rounded-lg bg-purple-300/20 backdrop-blur-lg" >
             <div className="overflow-x-auto w-full">
           {  enrolled.length < 1 ?
-                                    <h2 className="text-3xl text-center">You selected No classes ! <br />
-                                        <Link to="/active-classes" className="text-xl font-extralight hover:underline hover:text-blue-400">Select A class</Link>
+                                    <h2 className="text-3xl text-center">You Not enrolled any class yet ! <br />
+                                        <Link to="../../dashboard/selected-classes" className="text-xl font-extralight hover:underline hover:text-blue-400">Get a class</Link>
                                     </h2> :
                 <table className="table">
 
